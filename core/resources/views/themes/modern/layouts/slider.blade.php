@@ -65,7 +65,7 @@
                     {{-- Photo Slider Banners --}}
                     @php($sliderCount = count($SliderBanners))
                     <div id="heroCarousel"
-                         class="modern-hero-carousel doman-cinematic-carousel carousel carousel-fade slide {{ $sliderCount === 1 ? 'is-static' : '' }}"
+                         class="modern-hero-carousel doman-cinematic-carousel carousel carousel-fade slide {{ $sliderCount === 1 ? 'is-static' : 'is-static' }}"
                          data-bs-ride="{{ $sliderCount > 1 ? 'carousel' : 'false' }}"
                          data-bs-interval="6500"
                          data-bs-pause="hover"
