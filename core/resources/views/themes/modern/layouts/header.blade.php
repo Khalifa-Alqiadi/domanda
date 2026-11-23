@@ -4,7 +4,7 @@
             @if(Helper::GeneralSiteSettings('style_logo_' . @Helper::currentLanguage()->code))
                 <img class="doman-identity-logo"
                      src="{{ route('fileView', ['path' => 'settings/'.Helper::GeneralSiteSettings('style_logo_' . @Helper::currentLanguage()->code)]) }}"
-                     alt="" width="100" height="52">
+                     alt="" width="100" height="100">
             @endif
         </a>
         @include(theme_view('layouts.menu'))
