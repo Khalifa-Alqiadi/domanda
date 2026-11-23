@@ -40,8 +40,12 @@
                         $blockModuleClass = ((int) @$TopicBlockContents->module_id > 0)
                             ? ' topic-block--module-'.(int) @$TopicBlockContents->module_id
                             : '';
+                        $blockCssClasses = preg_split('/\s+/', trim((string) $TopicBlock->css_classes), -1, PREG_SPLIT_NO_EMPTY);
+                        $isMissionAndVisionBlock = in_array('mission-and-vision', $blockCssClasses, true);
+                        $isCoreValuesBlock = in_array('core-values', $blockCssClasses, true)
+                            || in_array('dore-values', $blockCssClasses, true);
                         ?>
-                    <div class="topic-block topic-block--{{ (int) $TopicBlock->id }} topic-block--type-{{ (int) $TopicBlock->type }}{{ $blockViewClass }}{{ $blockModuleClass }}"
+                    <div class="topic-block topic-block--{{ (int) $TopicBlock->id }} topic-block--type-{{ (int) $TopicBlock->type }}{{ $blockViewClass }}{{ $blockModuleClass }} {{ trim((string) $TopicBlock->css_classes) }}"
                          data-topic-block="{{ (int) $TopicBlock->id }}"
                          @if($blockViewStyle !== '') data-topic-view="{{ $blockViewStyle }}" @endif>
                     @if($TopicBlock->type == 4)

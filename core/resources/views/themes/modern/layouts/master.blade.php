@@ -20,7 +20,7 @@
 
 @if(!@$HideHeader)
 <!-- ======= Top Bar ======= -->
-@include(theme_view('layouts.topbar'))
+{{-- @include(theme_view('layouts.topbar')) --}}
 
 <!-- ======= Header ======= -->
 @include(theme_view('layouts.header'))

@@ -3,7 +3,7 @@
     $SliderBanners = Helper::BannersList($BannersSettingsId);
     ?>
     @if(count($SliderBanners) > 0)
-        <section id="hero" class="modern-hero">
+        <section id="hero" class="modern-hero doman-hero">
             <div class="hero-container hero-slider">
                 @foreach($SliderBanners->slice(0, 1) as $SliderBanner)
                     <?php
@@ -26,25 +26,46 @@
                 ?>
                 @if($SliderBanner_type == 0)
                     {{-- Text/Code Banners --}}
-                    <div class="text-center">
+                    <div class="doman-editorial-hero">
                         @foreach($SliderBanners as $SliderBanner)
                             <?php
+                            $BTitle = $SliderBanner->$title_var ?: $SliderBanner->$title_var2;
                             if ($SliderBanner->$details_var != "") {
                                 $BDetails = $SliderBanner->$details_var;
                             } else {
                                 $BDetails = $SliderBanner->$details_var2;
                             }
                             ?>
-                            @if($BDetails != "")
-                                <div>{!! $BDetails !!}</div>
-                            @endif
+                            <div class="doman-editorial-slide">
+                                <div class="container doman-editorial-grid">
+                                    <div class="doman-editorial-copy">
+                                        <span class="doman-eyebrow"><span class="doman-eyebrow-dot"></span>{{ __('doman.hero.eyebrow') }}</span>
+                                        @if($BTitle != "")<h1>{{ $BTitle }}</h1>@endif
+                                        @if($BDetails != "")<p>{{ $BDetails }}</p>@endif
+                                        <a href="{{ Helper::homeURL() }}#main" class="doman-editorial-cta">
+                                            <span>{{ __('doman.hero.discover') }}</span>
+                                            <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="doman-editorial-art" aria-hidden="true">
+                                        <div class="doman-orbit doman-orbit-outer"></div>
+                                        <div class="doman-orbit doman-orbit-inner"></div>
+                                        <div class="doman-leaf"><span class="doman-leaf-shape"></span></div>
+                                        <span class="doman-art-label doman-art-label-top">{{ __('doman.brand_slide_label') }}</span>
+                                        <span class="doman-art-label doman-art-label-bottom">{{ __('doman.brand_values') }}</span>
+                                    </div>
+                                </div>
+                                <div class="doman-editorial-bottom container" aria-hidden="true">
+                                    <span>{{ __('doman.brand_company') }}</span><span>{{ __('doman.hero.daily_quality') }}</span>
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 @elseif($SliderBanner_type == 1)
                     {{-- Photo Slider Banners --}}
                     @php($sliderCount = count($SliderBanners))
                     <div id="heroCarousel"
-                         class="modern-hero-carousel carousel carousel-fade slide {{ $sliderCount === 1 ? 'is-static' : '' }}"
+                         class="modern-hero-carousel doman-cinematic-carousel carousel carousel-fade slide {{ $sliderCount === 1 ? 'is-static' : '' }}"
                          data-bs-ride="{{ $sliderCount > 1 ? 'carousel' : 'false' }}"
                          data-bs-interval="6500"
                          data-bs-pause="hover"
@@ -76,7 +97,6 @@
                                     $BLink = $SliderBanner->$link_var2;
                                 }
                                 $slideNumber = str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT);
-                                $slideTotal = str_pad((string) $sliderCount, 2, '0', STR_PAD_LEFT);
                                 ?>
                                 <div class="carousel-item {{ $i === 0 ? 'active' : '' }}"
                                      role="group"
@@ -93,29 +113,33 @@
                                     </div>
                                     <div class="modern-hero-shade" aria-hidden="true"></div>
                                     <div class="modern-hero-orbit" aria-hidden="true"></div>
+                                    <span class="doman-cinematic-wordmark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
+                                    <div class="doman-photo-frame" aria-hidden="true">
+                                        <span class="doman-photo-frame-number">{{ $slideNumber }}</span>
+                                        <span class="doman-photo-frame-caption">{{ __('doman.photo_slider.image_caption') }}</span>
+                                    </div>
 
-                                    @if($BTitle != "" || $BDetails != "" || $BLink != "")
-                                        <div class="modern-hero-container container">
-                                            <div class="modern-hero-content">
-                                                @if($BTitle != "")
-                                                    <h2 class="modern-hero-title">{!! $BTitle !!}</h2>
-                                                @endif
+                                    <div class="modern-hero-container container">
+                                        <div class="modern-hero-content">
+                                            <span class="doman-photo-overline"><span aria-hidden="true"></span>{{ __('doman.photo_slider.eyebrow') }}</span>
+                                            @if($BTitle != "")
+                                                <h2 class="modern-hero-title">{{ $BTitle }}</h2>
+                                            @endif
 
-                                                @if($BDetails != "")
-                                                    <p class="modern-hero-description">{!! nl2br(e($BDetails)) !!}</p>
-                                                @endif
+                                            @if($BDetails != "")
+                                                <p class="modern-hero-description">{!! nl2br(e($BDetails)) !!}</p>
+                                            @endif
 
-                                                @if($BLink != "")
-                                                    <a href="{{ $BLink }}" class="modern-hero-cta slider-link">
-                                                        <span>{{ __('frontend.moreDetails') }}</span>
-                                                        <span class="modern-hero-cta-icon" aria-hidden="true">
-                                                            <i class="bi bi-arrow-up-right"></i>
-                                                        </span>
-                                                    </a>
-                                                @endif
-                                            </div>
+                                            @if($BLink != "")
+                                                <a href="{{ $BLink }}" class="modern-hero-cta slider-link">
+                                                    <span>{{ __('doman.photo_slider.discover') }}</span>
+                                                    <span class="modern-hero-cta-icon" aria-hidden="true">
+                                                        <i class="bi bi-arrow-up-right"></i>
+                                                    </span>
+                                                </a>
+                                            @endif
                                         </div>
-                                    @endif
+                                    </div>
                                 </div>
                                 @php($i++)
                             @endforeach
@@ -125,6 +149,7 @@
                         <ol id="hero-carousel-indicators" hidden aria-hidden="true"></ol>
 
                         <div class="modern-hero-rail container">
+                            <span class="doman-photo-rail-label">{{ __('doman.photo_slider.rail_label') }}</span>
                             <div class="modern-hero-indicators carousel-indicators">
                                 @php($indicatorIndex = 0)
                                 @foreach($SliderBanners as $SliderBanner)

@@ -3,16 +3,28 @@ $style_color1 = Helper::GeneralSiteSettings("style_color1") ?: "#0cbaa4";
 $style_color2 = Helper::GeneralSiteSettings("style_color2") ?: "#2e3e4e";
 $site_title_var = "site_title_".@Helper::currentLanguage()->code;
 $site_desc_var = "site_desc_".@Helper::currentLanguage()->code;
-$site_logo_var = "style_logo_".@Helper::currentLanguage()->code;
-$footer_logo = Helper::GeneralSiteSettings('style_footer_logo') ?: Helper::GeneralSiteSettings($site_logo_var);
 $contact_address = Helper::GeneralSiteSettings("contact_t1_" . @Helper::currentLanguage()->code);
 $contact_phone = Helper::GeneralSiteSettings("contact_t3");
 $contact_email = Helper::GeneralSiteSettings("contact_t6");
 ?>
-<footer id="footer" class="modern-footer">
+<footer id="footer" class="modern-footer doman-footer-light">
     @if(Helper::GeneralSiteSettings("style_footer")==1)
         <div class="footer-top">
             <div class="container" >
+                <div class="doman-footer-masthead d-none">
+                    <div class="doman-footer-masthead-copy">
+                        <span class="doman-footer-eyebrow">{{ __('doman.footer.eyebrow') }}</span>
+                        <h2>{{ __('doman.footer.headline') }}</h2>
+                    </div>
+                    <span class="doman-footer-masthead-wordmark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
+                    @if($contact_email || $contact_phone)
+                        <a class="doman-footer-cta" href="{{ $contact_email ? 'mailto:'.$contact_email : 'tel:'.$contact_phone }}">
+                            <span>{{ __('doman.footer.contact_cta') }}</span>
+                            <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                        </a>
+                    @endif
+                    <span class="doman-footer-masthead-leaf" aria-hidden="true"></span>
+                </div>
                 @if($contact_address !="" || $contact_phone !="" || $contact_email !="")
                     <div class="modern-footer-contact-bar">
                         @if($contact_address !="")
@@ -49,12 +61,11 @@ $contact_email = Helper::GeneralSiteSettings("contact_t6");
                     <div class="col-lg-4 col-md-12">
                         <div class="modern-footer-brand">
                             <a class="modern-footer-logo" href="{{ Helper::homeURL() }}">
-                                @if($footer_logo)
-                                    <img alt="{{ Helper::GeneralSiteSettings($site_title_var) }}"
-                                         src="{{ route("fileView",["path" =>'settings/'.$footer_logo ]) }}" class="img-fluid" width="230" height="50">
-                                @else
-                                    <img alt="{{ Helper::GeneralSiteSettings($site_title_var) }}" src="{{ route("fileView",["path" =>'settings/nologo.png' ]) }}" class="img-fluid" width="172" height="50">
-                                @endif
+                                <span class="doman-footer-mark" aria-hidden="true"><span></span></span>
+                                <span class="doman-footer-logo-copy">
+                                    <strong>{{ Helper::GeneralSiteSettings($site_title_var) ?: __('doman.brand_company') }}</strong>
+                                    <small>{{ __('doman.footer.brand_caption') }}</small>
+                                </span>
                             </a>
                             @if(Helper::GeneralSiteSettings($site_desc_var) !="")
                                 <p class="modern-footer-description">{{ Helper::GeneralSiteSettings($site_desc_var) }}</p>
@@ -135,7 +146,7 @@ $contact_email = Helper::GeneralSiteSettings("contact_t6");
             <div class="text-center">
                 <div class="copyright">
                     &copy; <?php echo date("Y") ?> {{ __('frontend.AllRightsReserved') }}
-                    . <a href="#">{{Helper::GeneralSiteSettings($site_title_var)}}</a>
+                    . {{Helper::GeneralSiteSettings($site_title_var)}}
                 </div>
                 <div class="credits">
                     {{ __('frontend.poweredByName') }} <a href="https://yemenhosting.com">{{__('frontend.yemenHosting')}}</a>

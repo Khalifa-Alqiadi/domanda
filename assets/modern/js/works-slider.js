@@ -17,23 +17,24 @@
             const controls = slider.querySelector(".modern-works-slider-controls");
             const isMagazine = slider.classList.contains("modern-works-slider--magazine");
             const isVideos = slider.classList.contains("modern-works-slider--videos");
-            const isSpecialSlider = isMagazine || isVideos;
+            const isProducts = slider.classList.contains("doman-products-slider");
+            const isSpecialSlider = isMagazine || isVideos || isProducts;
 
             if (slideCount <= 1) {
                 slider.classList.add("is-static");
             }
 
             const swiper = new Swiper(slider, {
-                speed: 700,
-                slidesPerView: 1,
-                spaceBetween: 16,
+                speed: isProducts ? 850 : 700,
+                slidesPerView: isProducts ? 1.08 : 1,
+                spaceBetween: isProducts ? 14 : 16,
                 watchOverflow: true,
                 centerInsufficientSlides: true,
                 grabCursor: slideCount > 1,
                 loop: !isSpecialSlider && slideCount > 2,
-                rewind: isVideos ? slideCount > 4 : (isMagazine ? slideCount > 3 : (slideCount > 1 && slideCount <= 2)),
+                rewind: isProducts ? slideCount > 1 : (isVideos ? slideCount > 4 : (isMagazine ? slideCount > 3 : (slideCount > 1 && slideCount <= 2))),
                 autoplay: slideCount > 1 && !prefersReducedMotion ? {
-                    delay: 4500,
+                    delay: isProducts ? 5200 : 4500,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true
                 } : false,
@@ -49,7 +50,10 @@
                     el: slider.querySelector(".modern-works-slider-pagination"),
                     clickable: true
                 },
-                breakpoints: {
+                breakpoints: isProducts ? {
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1200: { slidesPerView: 3, spaceBetween: 22 }
+                } : {
                     768: {
                         slidesPerView: 2,
                         spaceBetween: 20

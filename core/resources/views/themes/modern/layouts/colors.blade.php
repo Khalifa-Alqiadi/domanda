@@ -99,10 +99,6 @@ $hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
         color: {{ Helper::GeneralSiteSettings("style_color1") }};
     }
 
-    .navbar .active, .navbar .active:focus {
-        color: {{ Helper::GeneralSiteSettings("style_color1") }}  !important;
-    }
-
     #hero .carousel-item::before {
         background-color: {{ Helper::colorHexToRGB(Helper::colorHexToDarken(Helper::GeneralSiteSettings("style_color2"),2.4),0.6) }};
     }

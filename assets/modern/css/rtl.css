@@ -7,7 +7,7 @@
 }
 
 * {
-    font-family: Tajawal, sans-serif
+    font-family: Alexandria, sans-serif
 }
 
 #hero h2, .btn, .categories-list .nav-link span, .navbar .nav-link, h1, h2, h3, h4, h5, h6,.modern-footer-contact-label,.modern-works-title {
@@ -297,10 +297,15 @@
     content: "\f104";
 }
 .modern-footer-contact-value {
-    font-family: Tajawal, sans-serif
+    font-family: Alexandria, sans-serif
 }
 #footer .modern-footer-contact-icon{
     line-height: 20px;
+}
+
+#footer.modern-footer .footer-newsletter form button {
+    right: auto;
+    left: 0;
 }
 .modern-works-title {
     font-size: 1.5rem;
@@ -309,4 +314,13 @@
 
 .lang-label {
     float: left;
+}
+
+/* Doman header and hero in Arabic. */
+#header.doman-header .doman-identity-name strong,
+#header.doman-header .navbar > ul > li > a,
+#hero.doman-hero .modern-hero-title,
+.doman-editorial-copy h1,
+.doman-editorial-copy p {
+    font-family: Alexandria, sans-serif;
 }

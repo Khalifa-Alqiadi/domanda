@@ -26,24 +26,30 @@ if (@$TopicBlockContents->module_id) {
 ?>
 
 @if(count($BlockTopics) >0)
-    <section id="landing-block-{{ @$TopicBlock->id }}" class="gallery landing-block {{ @$TopicBlock->css_classes  }}" style="{{ $block_style }}">
+    <section id="landing-block-{{ @$TopicBlock->id }}" class="gallery landing-block doman-gallery {{ @$TopicBlock->css_classes  }}" style="{{ $block_style }}">
         <div class="container">
-            @if(@$TopicBlock->title_status || @$TopicBlock->desc_status)
-                <div class="section-title">
+            <div class="doman-gallery-heading">
+                <div class="doman-gallery-heading-copy">
+                    <span class="doman-gallery-eyebrow"><span aria-hidden="true"></span>{{ __('doman.gallery.eyebrow') }}</span>
                     @if(@$TopicBlock->title_status)
-                        <h2>{{ @$TopicBlockContents->{"title_".@Helper::currentLanguage()->code} }}</h2>
+                        <h2>{{ @$TopicBlockContents->$title_var ?: @$TopicBlockContents->$title_var2 }}</h2>
                     @endif
                     @if(@$TopicBlock->desc_status)
-                        <p>{!! nl2br(@$TopicBlockContents->{"desc_".@Helper::currentLanguage()->code}) !!}</p>
+                        <p>{{ strip_tags(@$TopicBlockContents->{"desc_".@Helper::currentLanguage()->code} ?: @$TopicBlockContents->{"desc_".config('smartend.default_language')}) }}</p>
                     @endif
                 </div>
-            @endif
+                @if(@$TopicBlock->more_btn_status)
+                    <a href="{{ url($section_url) }}" class="doman-gallery-all">
+                        <span>{{ __('doman.gallery.view_all') }}</span>
+                        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                @endif
+            </div>
         </div>
 
         <div class="container-fluid gallery-showcase">
             <div class="gallery-deck" role="list">
                     <?php
-                    $section_url = "";
                     $ph_count = 0;
                     ?>
                 @foreach($BlockTopics as $BlockTopic)
@@ -54,23 +60,27 @@ if (@$TopicBlockContents->module_id) {
                             $title = $BlockTopic->$title_var2;
                         }
 
-                        if ($section_url == "") {
-                            $section_url = Helper::sectionURL($BlockTopic->webmaster_id);
-                        }
                         ?>
                     @foreach($BlockTopic->photos as $photo)
                         @if($ph_count<$PhotosLimit)
                             <div class="gallery-deck-item" role="listitem">
-                                <div class="gallery-item">
+                                <div class="gallery-item" data-motion="fade-up" data-motion-delay="{{ min(($ph_count % 8) * 85, 520) }}">
                                     <a href="{{ route("fileView",["path" =>'topics/'.$photo->file ]) }}"
                                        class="galelry-lightbox gallery-card-link" title="{{ $title }}"
                                        aria-label="{{ $title }}">
-                                        <img src="{{ route("fileView",["path" =>'topics/'.$photo->file ]) }}?w=720&h=960"
-                                             width="720" height="960" loading="lazy"
-                                             sizes="(min-width: 992px) 28vw, (min-width: 480px) 50vw, 82vw"
+                                        <img src="{{ route("fileView",["path" =>'topics/'.$photo->file ]) }}?w=1200&h=960"
+                                             width="1200" height="960" loading="lazy"
+                                             sizes="(min-width: 992px) 50vw, (min-width: 576px) 50vw, 100vw"
                                              alt="{{ $title }}" class="gallery-card-image">
-                                        <span class="gallery-card-action" aria-hidden="true">
-                                            <i class="bi bi-arrows-fullscreen"></i>
+                                        <span class="doman-gallery-card-index" aria-hidden="true">{{ str_pad((string) ($ph_count + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                                        <span class="doman-gallery-card-footer">
+                                            <span class="doman-gallery-card-copy">
+                                                <small>{{ __('doman.gallery.image_label') }}</small>
+                                                <strong>{{ $title }}</strong>
+                                            </span>
+                                            <span class="gallery-card-action" aria-hidden="true">
+                                                <i class="bi bi-arrow-up-right"></i>
+                                            </span>
                                         </span>
                                     </a>
                                 </div>
@@ -85,17 +95,6 @@ if (@$TopicBlockContents->module_id) {
                 @endforeach
 
             </div>
-            @if (@$TopicBlock->more_btn_status)
-                <div class="row mt-3">
-                    <div class="col-lg-12">
-                        <div class="more-btn">
-                            <a href="{{ url($section_url) }}" class="btn btn-theme">
-                                {{ __('frontend.viewMore') }}
-                                <i class="fa-solid fa-arrow-right-long staff-cta-arrow" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            @endif
         </div>
     </section>
 @endif

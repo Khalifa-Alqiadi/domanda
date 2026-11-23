@@ -30,7 +30,55 @@
                 $file_var2 = "file_".config('smartend.default_language');
                 $link_var = "link_".@Helper::currentLanguage()->code;
                 ?>
-            @if($SideBanner_type==0)
+            @if(!empty($isCoreValuesBlock) && $SideBanner_type==0)
+                @include(theme_view('landing.core-values'))
+            @elseif(!empty($isMissionAndVisionBlock) && $SideBanner_type==0)
+                <section class="doman-vm-stage" aria-labelledby="doman-vm-title-{{ (int) $TopicBlock->id }}">
+                    <div class="container">
+                        <div class="doman-vm-topline" aria-hidden="true">
+                            <span>{{ __('doman.vision_mission.topline') }}</span>
+                            <span>{{ __('doman.vision_mission.nature_line') }}</span>
+                        </div>
+                        <div class="doman-vm-layout">
+                            <div class="doman-vm-intro">
+                                <span class="doman-vm-kicker">{{ __('doman.vision_mission.kicker') }}</span>
+                                <h2 id="doman-vm-title-{{ (int) $TopicBlock->id }}">{{ __('doman.vision_mission.heading') }}</h2>
+                                <span class="doman-vm-intro-line" aria-hidden="true"></span>
+                                <p>{{ __('doman.vision_mission.description') }}</p>
+                                <span class="doman-vm-wordmark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
+                            </div>
+                            <div class="doman-vm-panels">
+                                @foreach($BannersList as $TextBanner)
+                                    @php
+                                        $BTitle = $TextBanner->$title_var ?: $TextBanner->$title_var2;
+                                        $BDetails = $TextBanner->$details_var ?: $TextBanner->$details_var2;
+                                        $BLink = $TextBanner->$link_var;
+                                    @endphp
+                                    <article class="doman-vm-panel {{ $loop->first ? 'doman-vm-panel--vision' : 'doman-vm-panel--mission' }}">
+                                        <div class="doman-vm-panel-art" aria-hidden="true"><span></span><span></span><span></span></div>
+                                        <div class="doman-vm-panel-top">
+                                            <span>{{ __('doman.vision_mission.panel_number', ['number' => str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT)]) }}</span>
+                                            <span class="doman-vm-panel-mark" aria-hidden="true">✦</span>
+                                        </div>
+                                        <div class="doman-vm-panel-body">
+                                            @if($BTitle !== '')<h3>{{ $BTitle }}</h3>@endif
+                                            @if($BDetails !== '')<p>{!! nl2br(e($BDetails)) !!}</p>@endif
+                                        </div>
+                                        <div class="doman-vm-panel-bottom">
+                                            <span>{{ __('doman.brand_company') }}</span>
+                                            @if($BLink)
+                                                <a href="{{ $BLink }}" aria-label="{{ $BTitle }}"><i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+                                            @else
+                                                <span class="doman-vm-panel-dot" aria-hidden="true"></span>
+                                            @endif
+                                        </div>
+                                    </article>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            @elseif($SideBanner_type==0)
                 {{-- Text/Code Banners--}}
                     <?php
                     $media_banners = $BannersList->where("icon", "!=", "")->count();
