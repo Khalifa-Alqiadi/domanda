@@ -95,16 +95,13 @@ if (@$TopicBlockContents->module_id) {
                                 }
                                 $productCategory = @$Topic->category($Topic->id);
                                 $productCategoryTitle = @$productCategory->$title_var ?: @$productCategory->$title_var2;
-                                $productIndex = str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT);
                                 ?>
                                 <article class="doman-product-card">
                                     <a href="{{ $topic_link_url }}" class="doman-product-link" aria-label="{{ $title }}">
                                         <div class="doman-product-stage">
-                                            {{-- <span class="doman-product-index" aria-hidden="true">{{ $productIndex }}</span> --}}
                                             @if($productCategoryTitle != '')
                                                 <span class="doman-product-category">{{ $productCategoryTitle }}</span>
                                             @endif
-                                            <span class="doman-product-halo" aria-hidden="true"></span>
                                             @if($productImage != '')
                                                 <img class="doman-product-image" src="{{ $productImage }}" alt="{{ Helper::topicPhotoAlt($Topic) }}" loading="lazy">
                                             @else
@@ -120,7 +117,6 @@ if (@$TopicBlockContents->module_id) {
                                                     <p>{{ strip_tags($details) }}</p>
                                                 @endif
                                             </div>
-                                            <span class="doman-product-go" aria-hidden="true"><i class="bi bi-arrow-up-right"></i></span>
                                         </div>
                                         <span class="doman-product-bottom">{{ __('doman.products.card_link') }} <i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
                                     </a>

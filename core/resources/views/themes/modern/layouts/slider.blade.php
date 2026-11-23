@@ -113,7 +113,6 @@
                                     </div>
                                     <div class="modern-hero-shade" aria-hidden="true"></div>
                                     <div class="modern-hero-orbit" aria-hidden="true"></div>
-                                    <span class="doman-cinematic-wordmark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
                                     <div class="doman-photo-frame" aria-hidden="true">
                                         <span class="doman-photo-frame-number">{{ $slideNumber }}</span>
                                         <span class="doman-photo-frame-caption">{{ __('doman.photo_slider.image_caption') }}</span>

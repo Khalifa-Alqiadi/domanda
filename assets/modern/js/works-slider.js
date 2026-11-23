@@ -25,16 +25,16 @@
             }
 
             const swiper = new Swiper(slider, {
-                speed: isProducts ? 850 : 700,
-                slidesPerView: isProducts ? 1.08 : 1,
-                spaceBetween: isProducts ? 14 : 16,
+                speed: isProducts ? 800 : 700,
+                slidesPerView: isProducts && slideCount > 1 ? 1.12 : 1,
+                spaceBetween: isProducts ? 15 : 16,
                 watchOverflow: true,
                 centerInsufficientSlides: true,
                 grabCursor: slideCount > 1,
                 loop: !isSpecialSlider && slideCount > 2,
                 rewind: isProducts ? slideCount > 1 : (isVideos ? slideCount > 4 : (isMagazine ? slideCount > 3 : (slideCount > 1 && slideCount <= 2))),
                 autoplay: slideCount > 1 && !prefersReducedMotion ? {
-                    delay: isProducts ? 5200 : 4500,
+                    delay: isProducts ? 5400 : 4500,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true
                 } : false,
@@ -46,13 +46,19 @@
                     prevEl: slider.querySelector(".modern-works-slider-prev"),
                     nextEl: slider.querySelector(".modern-works-slider-next")
                 },
-                pagination: {
+                pagination: isProducts ? {
+                    el: slider.querySelector(".modern-works-slider-pagination"),
+                    type: "fraction",
+                    formatFractionCurrent: (number) => String(number).padStart(2, "0"),
+                    formatFractionTotal: (number) => String(number).padStart(2, "0")
+                } : {
                     el: slider.querySelector(".modern-works-slider-pagination"),
                     clickable: true
                 },
                 breakpoints: isProducts ? {
-                    768: { slidesPerView: 2, spaceBetween: 20 },
-                    1200: { slidesPerView: 3, spaceBetween: 22 }
+                    768: { slidesPerView: Math.min(slideCount, 1.8), spaceBetween: 20 },
+                    1200: { slidesPerView: Math.min(slideCount, 2.35), spaceBetween: 24 },
+                    1600: { slidesPerView: Math.min(slideCount, 2.7), spaceBetween: 26 }
                 } : {
                     768: {
                         slidesPerView: 2,

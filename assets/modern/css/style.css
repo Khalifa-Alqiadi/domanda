@@ -4817,7 +4817,7 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
     top: 0;
     width: 1px;
     height: 100%;
-    background: linear-gradient(180deg, transparent 8%, rgba(255, 255, 255, .2) 31%, rgba(255, 255, 255, .2) 68%, transparent 92%);
+    background: linear-gradient(180deg, transparent 8%, rgba(255, 255, 255, 0) 31%, rgba(255, 255, 255, .2) 68%, transparent 92%);
     pointer-events: none;
 }
 #hero.doman-hero .doman-cinematic-carousel .modern-hero-container {
@@ -4905,21 +4905,6 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
     color: #000066;
     background: #ffcc00;
 }
-#hero.doman-hero .doman-cinematic-wordmark {
-    position: absolute;
-    z-index: 2;
-    inset-inline-end: -1.5vw;
-    bottom: 84px;
-    color: rgba(255, 255, 255, .16);
-    font-family: Alexandria, sans-serif;
-    font-size: clamp(125px, 17vw, 310px);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -.09em;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, .48);
-    white-space: nowrap;
-    pointer-events: none;
-}
 #hero.doman-hero .doman-photo-frame {
     position: absolute;
     z-index: 4;
@@ -4957,10 +4942,10 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
     gap: 28px;
     padding-inline: clamp(28px, 4vw, 62px);
     color: #fff;
-    background: rgba(0, 0, 45, .64);
+    background: rgba(0, 0, 45, 0);
     border-top: 1px solid rgba(255, 255, 255, .17);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
 }
 #hero.doman-hero .doman-cinematic-carousel .modern-hero-rail.container {
     width: 100%;
@@ -5084,25 +5069,24 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-cta { margin-top: 16px; }
 }
 
-/* Doman product collection: packaging-led cards and a quiet editorial frame. */
+/* Doman products: a continuous shelf that keeps several products in view. */
 section.doman-products {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding-block: clamp(84px, 10vw, 148px) clamp(80px, 9vw, 130px);
-    background: #f8f9f4;
+    padding-block: clamp(84px, 9vw, 132px) clamp(77px, 8vw, 110px);
+    background: #f7f8f3;
 }
 section.doman-products::before {
     content: "";
     position: absolute;
     z-index: 0;
-    inset-inline-end: -16vw;
-    top: -37vw;
-    width: min(76vw, 1100px);
-    aspect-ratio: 1;
-    border: 1px solid rgba(51, 153, 51, .12);
-    border-radius: 50%;
-    box-shadow: 0 0 0 110px rgba(51, 153, 51, .025), 0 0 0 220px rgba(51, 153, 51, .018);
+    inset-inline-end: -8%;
+    top: 0;
+    width: 46%;
+    height: 100%;
+    opacity: .6;
+    background: repeating-linear-gradient(90deg, transparent 0 58px, rgba(0, 0, 102, .035) 58px 59px);
     pointer-events: none;
 }
 section.doman-products > .container { position: relative; z-index: 1; }
@@ -5111,9 +5095,9 @@ section.doman-products .doman-products-intro {
     align-items: end;
     justify-content: space-between;
     gap: 40px;
-    margin-bottom: clamp(38px, 5vw, 66px);
+    margin-bottom: clamp(36px, 4.5vw, 62px);
 }
-section.doman-products .doman-products-intro-copy { max-width: 760px; }
+section.doman-products .doman-products-intro-copy { max-width: 750px; }
 section.doman-products .doman-products-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -5122,89 +5106,65 @@ section.doman-products .doman-products-eyebrow {
     color: #339933;
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: .09em;
+    letter-spacing: .07em;
 }
-section.doman-products .doman-products-eyebrow > span {
-    width: 32px;
-    height: 2px;
-    background: #ffcc00;
-}
+section.doman-products .doman-products-eyebrow > span { width: 30px; height: 2px; background: #ffcc00; }
 section.doman-products .doman-products-intro h2 {
     margin: 0;
     color: #000066;
     font-family: Alexandria, sans-serif;
-    font-size: clamp(44px, 5.5vw, 78px);
+    font-size: clamp(47px, 5.4vw, 78px);
     font-weight: 800;
     line-height: 1.12;
     letter-spacing: -.055em;
 }
 section.doman-products .doman-products-intro p {
     max-width: 600px;
-    margin: 20px 0 0;
-    color: #68746f;
-    font-size: clamp(15px, 1.3vw, 18px);
+    margin: 18px 0 0;
+    color: #62716c;
+    font-size: clamp(15px, 1.2vw, 18px);
     line-height: 1.8;
 }
 section.doman-products .doman-products-all {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 22px;
-    min-height: 52px;
-    margin-bottom: 5px;
-    padding: 8px 9px 8px 23px;
-    border: 1px solid rgba(0, 0, 102, .18);
-    border-radius: 999px;
+    gap: 18px;
+    margin-bottom: 7px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 102, .35);
     color: #000066;
-    background: #fff;
     font-size: 13px;
     font-weight: 800;
-    box-shadow: 0 10px 28px rgba(0, 0, 70, .04);
-    transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    transition: gap .3s ease, color .3s ease, border-color .3s ease;
 }
-[dir="rtl"] section.doman-products .doman-products-all { padding: 8px 23px 8px 9px; }
-section.doman-products .doman-products-all i {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    color: #fff;
-    background: #339933;
-    font-size: 16px;
-}
+section.doman-products .doman-products-all i { color: #339933; font-size: 20px; }
 section.doman-products .doman-products-all:hover,
-section.doman-products .doman-products-all:focus-visible {
-    transform: translateY(-3px);
-    border-color: #339933;
-    color: #000066;
-    box-shadow: 0 15px 35px rgba(0, 0, 70, .1);
-}
-section.doman-products .doman-products-slider {
-    overflow: visible;
-    padding: 0 0 5px;
-}
+section.doman-products .doman-products-all:focus-visible { gap: 24px; color: #339933; border-color: #339933; }
+section.doman-products .doman-products-slider { overflow: visible; padding: 0; }
 section.doman-products .doman-products-slider .swiper-wrapper { align-items: stretch; }
 section.doman-products .doman-products-slider .swiper-slide { height: auto; }
 section.doman-products .doman-product-card { width: 100%; height: 100%; }
 section.doman-products .doman-product-link {
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100%;
+    min-height: 605px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 102, .08);
-    border-radius: 26px;
-    color: #000066;
-    background: #fff;
-    box-shadow: 0 15px 40px rgba(0, 0, 60, .045);
-    transition: transform .45s cubic-bezier(.22, 1, .36, 1), box-shadow .45s ease, border-color .45s ease;
+    border: 1px solid rgba(0, 0, 102, .13);
+    border-radius: 18px 18px 66px 18px;
+    color: #fff;
+    background: #000066;
+    box-shadow: 0 16px 38px rgba(0, 0, 60, .08);
+    transition: transform .42s cubic-bezier(.22, 1, .36, 1), box-shadow .42s ease;
 }
+[dir="rtl"] section.doman-products .doman-product-link { border-radius: 18px 18px 18px 66px; }
 section.doman-products .doman-product-link:hover,
 section.doman-products .doman-product-link:focus-visible {
-    color: #000066;
-    border-color: rgba(51, 153, 51, .32);
-    transform: translateY(-9px);
-    box-shadow: 0 28px 55px rgba(0, 0, 60, .12);
+    transform: translateY(-7px);
+    color: #fff;
+    box-shadow: 0 26px 48px rgba(0, 0, 60, .16);
 }
 section.doman-products .doman-product-link:focus-visible,
 section.doman-products .doman-products-all:focus-visible,
@@ -5212,51 +5172,44 @@ section.doman-products .modern-works-slider-button:focus-visible { outline: 2px 
 section.doman-products .doman-product-stage {
     position: relative;
     display: grid;
+    flex: 0 0 385px;
     place-items: center;
-    min-height: clamp(280px, 28vw, 375px);
     overflow: hidden;
-    background: #eaf3e8;
+    background: #e6f0e2;
 }
-section.doman-products .swiper-slide:nth-child(3n + 2) .doman-product-stage { background: #f2f0e7; }
-section.doman-products .swiper-slide:nth-child(3n + 3) .doman-product-stage { background: #eceef5; }
+section.doman-products .swiper-slide:nth-child(3n + 2) .doman-product-stage { background: #f3efdf; }
+section.doman-products .swiper-slide:nth-child(3n + 3) .doman-product-stage { background: #e8ebf3; }
+section.doman-products .doman-product-stage::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 17px;
+    border: 1px solid rgba(0, 0, 102, .11);
+    border-radius: 9px 9px 42px 9px;
+    pointer-events: none;
+}
+[dir="rtl"] section.doman-products .doman-product-stage::before { border-radius: 9px 9px 9px 42px; }
 section.doman-products .doman-product-stage::after {
     content: "";
     position: absolute;
-    inset: auto 0 0;
-    height: 38%;
-    background: linear-gradient(0deg, rgba(0, 0, 66, .05), transparent);
-    pointer-events: none;
+    z-index: 1;
+    inset-inline-start: 17px;
+    bottom: 17px;
+    width: 65px;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #339933 0 65%, #ffcc00 65% 100%);
 }
-section.doman-products .doman-product-halo {
-    position: absolute;
-    width: 74%;
-    aspect-ratio: 1;
-    border: 1px solid rgba(51, 153, 51, .16);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .22);
-    box-shadow: 0 0 0 34px rgba(255, 255, 255, .15), 0 0 0 72px rgba(255, 255, 255, .08);
-    transition: transform .6s cubic-bezier(.22, 1, .36, 1);
-}
-section.doman-products .doman-product-link:hover .doman-product-halo,
-section.doman-products .doman-product-link:focus-visible .doman-product-halo { transform: scale(1.12); }
-section.doman-products .doman-product-index,
 section.doman-products .doman-product-category {
     position: absolute;
-    z-index: 3;
-    top: 22px;
+    z-index: 4;
+    inset-inline-start: 35px;
+    top: 33px;
+    max-width: calc(100% - 70px);
+    overflow: hidden;
     color: #000066;
     font-size: 12px;
     font-weight: 800;
-}
-section.doman-products .doman-product-index { inset-inline-start: 23px; font-size: 15px; }
-section.doman-products .doman-product-category {
-    inset-inline-end: 20px;
-    max-width: 55%;
-    overflow: hidden;
-    padding: 8px 13px;
-    border: 1px solid rgba(255, 255, 255, .8);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .75);
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -5264,34 +5217,34 @@ section.doman-products .doman-product-image {
     position: relative;
     z-index: 2;
     display: block;
-    width: 79%;
-    height: 78%;
+    width: 82%;
+    height: 82%;
     object-fit: contain;
-    filter: drop-shadow(0 25px 19px rgba(0, 0, 60, .18));
-    transition: transform .6s cubic-bezier(.22, 1, .36, 1), filter .6s ease;
+    filter: drop-shadow(0 28px 22px rgba(0, 0, 55, .19));
+    transition: transform .65s cubic-bezier(.22, 1, .36, 1), filter .65s ease;
 }
 section.doman-products .doman-product-link:hover .doman-product-image,
 section.doman-products .doman-product-link:focus-visible .doman-product-image {
-    transform: translateY(-9px) rotate(-2deg) scale(1.045);
-    filter: drop-shadow(0 35px 25px rgba(0, 0, 60, .21));
+    transform: translateY(-9px) scale(1.045);
+    filter: drop-shadow(0 36px 27px rgba(0, 0, 55, .23));
 }
 section.doman-products .doman-product-placeholder {
     position: relative;
     z-index: 2;
     color: #339933;
     font-family: Alexandria, sans-serif;
-    font-size: clamp(35px, 4vw, 62px);
+    font-size: clamp(40px, 5vw, 72px);
     font-weight: 800;
     letter-spacing: -.09em;
 }
 section.doman-products .doman-product-stage-mark {
     position: absolute;
-    z-index: 1;
-    inset-inline-end: -10px;
-    bottom: -15px;
+    z-index: 0;
+    inset-inline-end: -12px;
+    bottom: -10px;
     color: rgba(0, 0, 102, .075);
     font-family: Alexandria, sans-serif;
-    font-size: clamp(65px, 7vw, 115px);
+    font-size: clamp(82px, 8vw, 140px);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -.09em;
@@ -5299,113 +5252,127 @@ section.doman-products .doman-product-stage-mark {
     pointer-events: none;
 }
 section.doman-products .doman-product-info {
-    display: flex;
+    display: block;
     flex: 1 1 auto;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    min-height: 170px;
-    padding: 24px 26px 18px;
+    min-height: 0;
+    padding: 26px 30px 10px;
 }
-section.doman-products .doman-product-info > div { min-width: 0; }
 section.doman-products .doman-product-info-label {
-    color: #339933;
+    color: #ffcc00;
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: .05em;
+    letter-spacing: .04em;
 }
 section.doman-products .doman-product-info h3 {
     display: -webkit-box;
     overflow: hidden;
-    margin: 9px 0 0;
-    color: #000066;
+    margin: 11px 0 0;
+    color: #fff;
     font-family: Alexandria, sans-serif;
-    font-size: clamp(22px, 2.1vw, 29px);
+    font-size: clamp(24px, 2vw, 31px);
     font-weight: 800;
-    line-height: 1.35;
+    line-height: 1.32;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
 section.doman-products .doman-product-info p {
     display: -webkit-box;
     overflow: hidden;
-    margin: 10px 0 0;
-    color: #7a8581;
+    margin: 11px 0 0;
+    color: rgba(255, 255, 255, .68);
     font-size: 13px;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
-section.doman-products .doman-product-go {
-    display: grid;
-    flex: 0 0 45px;
-    place-items: center;
-    width: 45px;
-    height: 45px;
-    border: 1px solid rgba(0, 0, 102, .16);
-    border-radius: 50%;
-    color: #000066;
-    font-size: 18px;
-    transition: color .3s ease, background .3s ease, border-color .3s ease, transform .3s ease;
-}
-section.doman-products .doman-product-link:hover .doman-product-go,
-section.doman-products .doman-product-link:focus-visible .doman-product-go {
-    transform: rotate(45deg);
-    border-color: #339933;
-    color: #fff;
-    background: #339933;
-}
 section.doman-products .doman-product-bottom {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    margin-inline: 26px;
-    padding-block: 13px 19px;
-    border-top: 1px solid rgba(0, 0, 102, .09);
-    color: #718078;
+    gap: 14px;
+    margin-inline: 30px;
+    padding-block: 13px 20px;
+    border-top: 1px solid rgba(255, 255, 255, .19);
+    color: #fff;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 800;
 }
-section.doman-products .doman-product-bottom i { color: #339933; font-size: 16px; }
+section.doman-products .doman-product-bottom i {
+    display: grid;
+    place-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: #000066;
+    background: #ffcc00;
+    font-size: 18px;
+    transition: transform .35s ease, background .35s ease;
+}
+section.doman-products .doman-product-link:hover .doman-product-bottom i,
+section.doman-products .doman-product-link:focus-visible .doman-product-bottom i { transform: rotate(45deg); background: #fff; }
 section.doman-products .modern-works-slider-controls {
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 37px;
+    justify-content: flex-start;
+    gap: 18px;
+    width: 100%;
+    margin-top: 35px;
 }
 section.doman-products .modern-works-slider-button {
-    width: 51px;
-    height: 51px;
-    border: 1px solid rgba(0, 0, 102, .18);
+    width: 49px;
+    height: 49px;
+    border: 1px solid rgba(0, 0, 102, .23);
     color: #000066;
-    background: #fff;
+    background: transparent;
     font-size: 17px;
 }
 section.doman-products .modern-works-slider-button:hover,
 section.doman-products .modern-works-slider-button:focus-visible { border-color: #339933; color: #fff; background: #339933; }
-section.doman-products .modern-works-slider-pagination { margin-inline: 10px; }
-section.doman-products .modern-works-slider-pagination .swiper-pagination-bullet { width: 6px; height: 6px; border: 0; background: #a8b1a8; opacity: 1; }
-section.doman-products .modern-works-slider-pagination .swiper-pagination-bullet-active { width: 29px; height: 6px; border-radius: 999px; background: #339933; }
+section.doman-products .modern-works-slider-pagination.swiper-pagination-fraction {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    width: auto;
+    margin-inline: 3px;
+    color: #8b968d;
+    direction: ltr;
+    font-family: Alexandria, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+section.doman-products .swiper-pagination-current { color: #000066; font-size: 22px; font-weight: 800; }
+section.doman-products .swiper-pagination-total { color: #849187; }
+@media (prefers-reduced-motion: no-preference) {
+    section.doman-products .swiper-slide-active .doman-product-image { animation: doman-product-image-in .75s cubic-bezier(.22, 1, .36, 1) both; }
+}
+@keyframes doman-product-image-in {
+    from { opacity: .4; transform: translateY(20px) scale(.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
 @media (max-width: 991px) {
-    section.doman-products .doman-products-intro { align-items: flex-start; }
-    section.doman-products .doman-products-all { margin-top: 25px; }
+    section.doman-products .doman-product-stage { flex-basis: 340px; }
+    section.doman-products .doman-product-link { min-height: 565px; }
 }
 @media (max-width: 767px) {
-    section.doman-products { padding-block: 72px 80px; }
-    section.doman-products .doman-products-intro { display: block; margin-bottom: 32px; }
+    section.doman-products { padding-block: 72px 82px; }
+    section.doman-products .doman-products-intro { display: block; margin-bottom: 31px; }
     section.doman-products .doman-products-intro h2 { font-size: clamp(40px, 10vw, 58px); }
     section.doman-products .doman-products-intro p { margin-top: 15px; font-size: 15px; }
-    section.doman-products .doman-products-all { margin-top: 23px; }
-    section.doman-products .doman-product-stage { min-height: 300px; }
-    section.doman-products .doman-product-info { min-height: 150px; padding: 22px 22px 17px; }
+    section.doman-products .doman-products-all { margin-top: 21px; }
+    section.doman-products .doman-product-stage { flex-basis: 285px; }
+    section.doman-products .doman-product-link { min-height: 530px; border-radius: 14px 14px 52px 14px; }
+    [dir="rtl"] section.doman-products .doman-product-link { border-radius: 14px 14px 14px 52px; }
+    section.doman-products .doman-product-stage::before { inset: 12px; }
+    section.doman-products .doman-product-stage::after { inset-inline-start: 12px; bottom: 12px; }
+    section.doman-products .doman-product-category { inset-inline-start: 26px; top: 24px; }
+    section.doman-products .doman-product-info { padding: 23px 23px 10px; }
     section.doman-products .doman-product-info h3 { font-size: 23px; }
-    section.doman-products .doman-product-bottom { margin-inline: 22px; }
-    section.doman-products .modern-works-slider-controls { justify-content: space-between; }
+    section.doman-products .doman-product-bottom { margin-inline: 23px; }
+    section.doman-products .modern-works-slider-controls { justify-content: space-between; margin-top: 27px; }
 }
 @media (prefers-reduced-motion: reduce) {
     section.doman-products .doman-product-link,
     section.doman-products .doman-product-image,
-    section.doman-products .doman-product-halo { transition: none; }
+    section.doman-products .doman-product-bottom i { transition: none; animation: none; }
 }
 
 /* Doman gallery: a photographic mosaic with restrained editorial details. */
