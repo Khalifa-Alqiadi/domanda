@@ -4788,9 +4788,9 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
     inset: 0;
     transform: none;
     background:
-        linear-gradient(90deg, rgba(0, 0, 42, .94) 0%, rgba(0, 0, 65, .85) 25%, rgba(0, 0, 65, .55) 48%, rgba(0, 0, 65, .08) 75%),
-        linear-gradient(0deg, rgba(0, 0, 42, .82) 0%, transparent 36%),
-        linear-gradient(180deg, rgba(0, 0, 42, .25), transparent 25%);
+        linear-gradient(90deg, rgb(0 0 42 / 83%) 0%, rgb(0 0 65 / 23%) 25%, rgb(0 0 65 / 0%) 48%, rgb(0 0 65 / 0%) 75% 75% ), 
+        linear-gradient(0deg, rgb(0 0 42 / 65%) 0%, transparent 36%), 
+        linear-gradient(180deg, rgb(0 0 42 / 28%), transparent 25%);
 }
 [dir="rtl"] #hero.doman-hero .doman-cinematic-carousel .modern-hero-shade {
     transform: scaleX(-1);
