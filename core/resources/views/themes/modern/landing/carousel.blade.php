@@ -100,7 +100,7 @@ if (@$TopicBlockContents->module_id) {
                                 <article class="doman-product-card">
                                     <a href="{{ $topic_link_url }}" class="doman-product-link" aria-label="{{ $title }}">
                                         <div class="doman-product-stage">
-                                            <span class="doman-product-index" aria-hidden="true">{{ $productIndex }}</span>
+                                            {{-- <span class="doman-product-index" aria-hidden="true">{{ $productIndex }}</span> --}}
                                             @if($productCategoryTitle != '')
                                                 <span class="doman-product-category">{{ $productCategoryTitle }}</span>
                                             @endif
