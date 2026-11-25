@@ -4113,7 +4113,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 .doman-vm-intro h2 {
     max-width: 12ch;
     margin: 0;
-    color: var(--doman-color2);
+    color: var(--doman-color1);
     font-family: Alexandria, sans-serif;
     font-size: clamp(43px, 4.9vw, 78px);
     font-weight: 700;
@@ -4132,7 +4132,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 .doman-vm-intro p {
     max-width: 34ch;
     margin: 0;
-    color: var(--doman-ink-soft);
+    color: var(--doman-color1);
     font-size: clamp(16px, 1.3vw, 19px);
     line-height: 1.95;
 }
@@ -4167,8 +4167,8 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 .doman-vm-panel--mission {
     margin-inline-start: clamp(25px, 5vw, 76px);
     border-radius: 36px 4px 36px 4px;
-    background: linear-gradient(125deg, color-mix(in srgb, var(--doman-color3) 80%, var(--doman-color2)), var(--doman-color3) 72%, color-mix(in srgb, var(--doman-color3) 82%, white));
-    box-shadow: 0 24px 62px rgba(20, 102, 40, .18);
+    background: var(--doman-color3);
+    box-shadow: 0 24px 62px color-mix(in srgb, var(--doman-color3) 20%, transparent);
 }
 .doman-vm-panel::before {
     position: absolute;
@@ -4241,7 +4241,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 }
 .doman-vm-panel-dot::before { width: 5px; height: 5px; border-radius: 50%; background: var(--doman-color4); content: ''; }
 .doman-vm-panel:hover { transform: translateY(-7px); box-shadow: 0 35px 78px color-mix(in srgb, var(--doman-color2) 26%, transparent); }
-.doman-vm-panel--mission:hover { box-shadow: 0 35px 78px rgba(20, 102, 40, .23); }
+.doman-vm-panel--mission:hover { box-shadow: 0 35px 78px color-mix(in srgb, var(--doman-color3) 27%, transparent); }
 
 [lang="en"] .doman-vm-intro h2,
 [lang="en"] .doman-vm-panel-body h3 { font-family: Alexandria, Arial, sans-serif; }
@@ -4312,7 +4312,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 .doman-values-eyebrow::before { width: 28px; height: 2px; background: var(--doman-color4); content: ''; }
 .doman-values-heading h2 {
     margin: 0 0 20px;
-    color: var(--doman-color2);
+    color: var(--doman-color1);
     font-family: Alexandria, sans-serif;
     font-size: clamp(42px, 5vw, 74px);
     font-weight: 700;
@@ -4322,7 +4322,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 .doman-values-heading p {
     max-width: 54ch;
     margin: 0;
-    color: var(--doman-ink-soft);
+    color: var(--doman-color1);
     font-size: clamp(16px, 1.25vw, 19px);
     line-height: 1.9;
 }
@@ -4384,8 +4384,8 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 .doman-value-card:nth-child(2) {
     border-color: transparent;
     color: #fff;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--doman-color3) 82%, var(--doman-color2)), color-mix(in srgb, var(--doman-color3) 87%, white));
-    box-shadow: 0 18px 50px rgba(31, 126, 56, .14);
+    background: var(--doman-color3);
+    box-shadow: 0 18px 50px color-mix(in srgb, var(--doman-color3) 18%, transparent);
 }
 .doman-value-card:nth-child(3) { background: var(--doman-surface-soft); }
 .doman-value-card:nth-child(4) { background: var(--doman-surface); }
@@ -4458,7 +4458,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
     color: currentColor;
     font-size: clamp(14px, 1.08vw, 17px);
     line-height: 1.85;
-    opacity: .78;
+    opacity: 1;
 }
 .doman-value-card-bottom {
     padding-top: 16px;
@@ -4467,7 +4467,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
     font-size: 10px;
     font-weight: 700;
     letter-spacing: .12em;
-    opacity: .6;
+    opacity: .9;
 }
 .doman-value-card-bottom a,
 .doman-value-card-end {
