@@ -6085,15 +6085,7 @@ section.doman-news .doman-news-read i { transition: none; }
 .topic-page.doman-topic-detail .post-audio { margin-bottom: 34px; }
 .topic-page.doman-topic-detail .video-container { overflow: hidden; border-radius: 18px 3px 18px 3px; background: var(--doman-color2); }
 .topic-page.doman-topic-detail .video-container iframe { display: block; width: 100%; min-height: 460px; }
-.topic-page.doman-topic-detail .article-body {
-    max-width: 75ch;
-    margin: 0;
-    color: var(--doman-color2);
-    font-size: clamp(16px, 1.15vw, 18px);
-    line-height: 2;
-    text-align: start;
-    overflow-wrap: anywhere;
-}
+
 .topic-page.doman-topic-detail .article-body > :first-child { margin-top: 0; }
 .topic-page.doman-topic-detail .article-body :is(p, ul, ol, blockquote) { margin-bottom: 1.25em; }
 .topic-page.doman-topic-detail .article-body :is(h2, h3, h4) { color: var(--doman-color1); line-height: 1.45; }
@@ -6239,8 +6231,8 @@ section.doman-news .doman-news-read i { transition: none; }
     max-width: 82ch;
     margin-inline: auto;
     padding: 0 0 clamp(24px, 3vw, 38px);
-    color: var(--doman-color1);
-    font-size: clamp(16px, 1.12vw, 18px);
+    color: #000;
+    font-size: 17px;
     line-height: 1.95;
     text-align: start;
 }
