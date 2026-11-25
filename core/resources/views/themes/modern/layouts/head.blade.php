@@ -42,7 +42,7 @@
 
 
 <link href="{{ theme_asset('css/colors.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
-<link href="{{ theme_asset('css/style.css') }}?v=2" rel="stylesheet"/>
+<link href="{{ theme_asset('css/style.css') }}?v={{ @filemtime(public_path('assets/modern/css/style.css')) ?: Helper::system_version() }}" rel="stylesheet"/>
 <link href="{{ theme_asset('css/motion.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
 <link href="{{ theme_asset('css/authors.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
 <link href="{{ theme_asset('css/hero-slider.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
