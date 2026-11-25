@@ -110,15 +110,25 @@
                 </div>
             </div>
         @endif
-        <section id="content">
-            <div class="container topic-page {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-detail' : '' }}">
+        <section id="content" class="doman-topic-content">
+            <div class="container topic-page doman-topic-detail {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-detail' : '' }} {{ (int) @$WebmasterSection->id === 8 ? 'doman-product-detail' : '' }}">
                 <div class="row">
                     @if ($Categories->count() > 1)
                         @include(theme_view('layouts.side'))
                     @endif
                     <div
                         class="col-lg-{{ $Categories->count() > 1 ? '9' : '12' }} col-md-{{ $Categories->count() > 1 ? '7' : '12' }} col-sm-12 col-xs-12">
-                        <article class="mb-5">
+                        <article class="doman-topic-article mb-5">
+                            @if ($webmaster_section_title || $Topic->date)
+                                <div class="doman-topic-kicker">
+                                    @if ($webmaster_section_title)
+                                        <span>{{ $webmaster_section_title }}</span>
+                                    @endif
+                                    @if ($Topic->date)
+                                        <time datetime="{{ date('Y-m-d', strtotime($Topic->date)) }}">{{ Helper::formatDate($Topic->date) }}</time>
+                                    @endif
+                                </div>
+                            @endif
                             @if ($WebmasterSection->type == 2 && $Topic->video_file != '')
                                 {{-- video --}}
                                 <div class="post-video">
@@ -227,83 +237,6 @@
                                     @endif
                                 </div>
                                 <br>
-                            @elseif(count($Topic->photos) > 0)
-                                {{-- photo slider --}}
-                                <div>
-                                    @if ($WebmasterSection->title_status)
-                                        <div class="post-heading">
-                                            <h1>
-                                                @if ($Topic->icon != '')
-                                                    <i class="{!! $Topic->icon !!} "></i>&nbsp;
-                                                @endif
-                                                {{ $title }}
-                                            </h1>
-                                            @if ($WebmasterSection->source_status && filled($Topic->source))
-                                                <p class="modern-news-source"><strong>{{ __('backend.source') }}:</strong>
-                                                    {{ $Topic->source }}</p>
-                                            @endif
-                                            @if (Helper::GeneralWebmasterSettings('authors_status') && $Topic->authors->where('status', true)->isNotEmpty())
-                                                <div class="modern-topic-authors">
-                                                    @include(theme_view('components.author-links'), [
-                                                        'authors' => $Topic->authors->where('status', true),
-                                                    ])
-                                                </div>
-                                            @endif
-                                        </div>
-                                    @endif
-
-                                    @if ($Topic->photo_file != '')
-                                        <div class="post-image mb-2">
-                                            <a href="{{ route('fileView', ['path' => 'topics/' . $Topic->photo_file]) }}"
-                                                class="galelry-lightbox" title="{{ $title }}">
-                                                <img loading="lazy"
-                                                    src="{{ route('fileView', ['path' => 'topics/' . $Topic->photo_file]) }}"
-                                                    alt="{{ Helper::topicPhotoAlt($Topic) }}" class="post-main-photo">
-                                            </a>
-                                        </div>
-                                        @if (
-                                            (int) @$WebmasterSection->id === 3 &&
-                                                trim((string) ($Topic->{'photo_alt_' . @Helper::currentLanguage()->code} ?? '')) !== '')
-                                            <p class="modern-news-photo-caption">{{ Helper::topicPhotoAlt($Topic) }}</p>
-                                        @endif
-                                    @endif
-
-                                    <div id="gallery" class="gallery line-frame mb-3 post-gallery">
-                                        <div class="row g-0 m-0">
-                                            <?php
-                                            $cols_lg = 3;
-                                            $cols_md = 4;
-                                            if ($Categories->count() > 1) {
-                                                $cols_lg = 4;
-                                                $cols_md = 6;
-                                            }
-                                            if ($Topic->photos->count() == 3) {
-                                                $cols_lg = 4;
-                                                $cols_md = 4;
-                                            }
-                                            if ($Topic->photos->count() == 2) {
-                                                $cols_lg = 6;
-                                                $cols_md = 6;
-                                            }
-                                            ?>
-                                            @foreach ($Topic->photos as $photo)
-                                                <div
-                                                    class="col-lg-{{ $cols_lg }} col-md-{{ $cols_md }} col-sm-6">
-                                                    <div class="gallery-item">
-                                                        <a href="{{ route('fileView', ['path' => 'topics/' . $photo->file]) }}"
-                                                            class="galelry-lightbox" title="{{ $photo->title }}">
-                                                            <img src="{{ route('fileView', ['path' => 'topics/' . $photo->file]) }}"
-                                                                loading="lazy" alt="{{ $photo->title }}" class="img-fluid">
-                                                        </a>
-                                                        @if ((int) @$WebmasterSection->id === 3 && trim((string) $photo->title) !== '')
-                                                            <p class="modern-news-photo-caption">{{ $photo->title }}</p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
                             @else
                                 {{-- one photo --}}
                                 <div class="post-image">
@@ -329,15 +262,17 @@
                                         </div>
                                     @endif
                                     @if ($Topic->photo_file != '')
-                                        <img src="{{ route('fileView', ['path' => 'topics/' . $Topic->photo_file]) }}"
-                                            loading="lazy" alt="{{ Helper::topicPhotoAlt($Topic) }}"
-                                            title="{{ $title }}" class="post-main-photo" />
+                                        <a href="{{ route('fileView', ['path' => 'topics/' . $Topic->photo_file]) }}"
+                                           class="galelry-lightbox" title="{{ $title }}">
+                                            <img src="{{ route('fileView', ['path' => 'topics/' . $Topic->photo_file]) }}"
+                                                 loading="lazy" alt="{{ Helper::topicPhotoAlt($Topic) }}"
+                                                 class="post-main-photo">
+                                        </a>
                                         @if (
                                             (int) @$WebmasterSection->id === 3 &&
                                                 trim((string) ($Topic->{'photo_alt_' . @Helper::currentLanguage()->code} ?? '')) !== '')
                                             <p class="modern-news-photo-caption">{{ Helper::topicPhotoAlt($Topic) }}</p>
                                         @endif
-                                        <br>
                                     @else
                                         @foreach (@$Topic->webmasterSection->customFields->where('type', 8) as $TopicPhotoCustomField)
                                             @if ($TopicPhotoCustomField->lang_code == 'all' || $TopicPhotoCustomField->lang_code == @Helper::currentLanguage()->code)
@@ -347,7 +282,6 @@
                                                             <img src="{{ route('fileView', ['path' => 'topics/' . @$Photo->field_value]) }}"
                                                                 loading="lazy" alt="{{ $title }}"
                                                                 title="{{ $title }}" class="post-main-photo" />
-                                                            <br>
                                                             @break
                                                         @endif
                                                     @endif
@@ -365,8 +299,6 @@
                                 'Fields' => @$WebmasterSection->customFields->where('in_page', true)->where('type', '!=', 9),
                             ])
 
-
-
                             <div class="article-body">
                                 @if (@$WebmasterSection->editor_status)
                                     {!! str_replace('"#', '"' . Request::url() . '#', $Topic->$details) !!}
@@ -377,6 +309,31 @@
                                     {!! Blade::render($custom_body_code) !!}
                                 @endif
                             </div>
+
+                            @if ($Topic->photos->isNotEmpty())
+                                <section id="gallery" class="doman-topic-gallery" aria-labelledby="doman-topic-gallery-title">
+                                    <div class="doman-topic-gallery-heading">
+                                        <span class="doman-topic-gallery-heading-icon" aria-hidden="true"><i class="fa-regular fa-images"></i></span>
+                                        <h2 id="doman-topic-gallery-title">{{ __('frontend.ourGallery') }}</h2>
+                                        <span class="doman-topic-gallery-count" aria-hidden="true">{{ str_pad((string) $Topic->photos->count(), 2, '0', STR_PAD_LEFT) }}</span>
+                                    </div>
+                                    <div class="doman-topic-gallery-grid {{ $Topic->photos->count() === 1 ? 'doman-topic-gallery-grid--single' : '' }}">
+                                        @foreach ($Topic->photos as $photo)
+                                            <figure class="doman-topic-gallery-item">
+                                                <a href="{{ route('fileView', ['path' => 'topics/' . $photo->file]) }}"
+                                                   class="galelry-lightbox" title="{{ $photo->title ?: $title }}">
+                                                    <img src="{{ route('fileView', ['path' => 'topics/' . $photo->file]) }}"
+                                                         loading="lazy" alt="{{ $photo->title ?: $title }}">
+                                                    <span class="doman-topic-gallery-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
+                                                </a>
+                                                @if (trim((string) $photo->title) !== '')
+                                                    <figcaption>{{ $photo->title }}</figcaption>
+                                                @endif
+                                            </figure>
+                                        @endforeach
+                                    </div>
+                                </section>
+                            @endif
 
                             @if ($attach_file != '')
                                 <?php
