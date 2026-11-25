@@ -94,9 +94,9 @@
                 </div>
                 <div class="doman-listing-hero-main">
                     <h1>{{ (@$search_word != "") ? __('backend.resultsFoundFor')." [ ".@$search_word." ]" : $page_title }}</h1>
-                    @if($is_news_listing || $is_product_listing)
+                    {{-- @if($is_news_listing || $is_product_listing)
                         <span class="doman-listing-hero-mark" aria-hidden="true">{{ $is_news_listing ? '03' : '08' }}</span>
-                    @endif
+                    @endif --}}
                 </div>
                 @if($Category_description)
                     <div class="text-muted mt-2 category-details">
@@ -112,9 +112,7 @@
                         @include(theme_view('layouts.side'))
                     @endif
                     <div class="col-lg-{{(@count($Categories)>0)? "9":"12"}} col-md-{{(@count($Categories)>0)? "7":"12"}} col-sm-12 col-xs-12">
-                        <div class="doman-listing-toolbar">
-                            <span>{{ $is_news_listing ? __('doman.news.category') : ($is_product_listing ? __('doman.products.collection_label') : $webmaster_section_title) }}</span>
-                        </div>
+
                         @if($Topics->total() == 0)
                             <div class="p-5 card text-center no-data">
                                 <i class="fa fa-desktop fa-5x opacity-50"></i>

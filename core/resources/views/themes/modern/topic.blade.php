@@ -305,11 +305,7 @@
 
                             @if ($Topic->photos->isNotEmpty())
                                 <section id="gallery" class="doman-topic-gallery" aria-labelledby="doman-topic-gallery-title">
-                                    <div class="doman-topic-gallery-heading">
-                                        <span class="doman-topic-gallery-heading-icon" aria-hidden="true"><i class="fa-regular fa-images"></i></span>
-                                        <h2 id="doman-topic-gallery-title">{{ __('frontend.ourGallery') }}</h2>
-                                        <span class="doman-topic-gallery-count" aria-hidden="true">{{ str_pad((string) $Topic->photos->count(), 2, '0', STR_PAD_LEFT) }}</span>
-                                    </div>
+
                                     <div class="doman-topic-gallery-grid {{ $Topic->photos->count() === 1 ? 'doman-topic-gallery-grid--single' : '' }}">
                                         @foreach ($Topic->photos as $photo)
                                             <figure class="doman-topic-gallery-item">
@@ -319,9 +315,6 @@
                                                          loading="lazy" alt="{{ $photo->title ?: $title }}">
                                                     <span class="doman-topic-gallery-zoom" aria-hidden="true"><i class="fa-solid fa-expand"></i></span>
                                                 </a>
-                                                @if (trim((string) $photo->title) !== '')
-                                                    <figcaption>{{ $photo->title }}</figcaption>
-                                                @endif
                                             </figure>
                                         @endforeach
                                     </div>

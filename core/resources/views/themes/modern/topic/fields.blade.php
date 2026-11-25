@@ -1,8 +1,4 @@
-@if($Topic->webmasterSection->date_status)
-    <div class="text-muted topic-date mb-2">
-        <i class="fa-regular fa-calendar"></i> {!! Helper::formatDate($Topic->date)  !!}
-    </div>
-@endif
+
 @if(@count(@$Fields) >0)
     <div class="row topic-custom-fields">
             <?php
