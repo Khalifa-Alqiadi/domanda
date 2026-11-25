@@ -66,7 +66,8 @@ class DomandaSeeder extends Seeder
             'تقديم منتجات غذائية ذات قيمة وجودة موثوقة من خلال اتباع طرق أكثر ذكاءً في إنتاج الألبان ومشتقاتها بما يحقق احتياجات المستهلك ويعزز جودة الصناعات المحلية.',
             'To provide trusted, high-quality nutritional products through smarter dairy production methods that meet consumer needs and contribute to strengthening local industries.');
 
-        Setting::query()->where('status', 1)->update([
+        $modernSettings = Setting::query()->where('theme_name', 'modern')->where('status', 1)->firstOrFail();
+        $modernSettings->forceFill([
             'site_title_ar' => 'دومان للألبان والأغذية',
             'site_title_en' => 'Doman Dairy & Food Co.',
             'site_desc_ar' => 'شركة يمنية متخصصة في إنتاج الألبان ومشتقاتها، تقدم منتجات غذائية موثوقة تجمع بين الجودة والطبيعة والبساطة الحديثة.',
@@ -74,7 +75,7 @@ class DomandaSeeder extends Seeder
             'style_color1' => '#333399', 'style_color2' => '#000066',
             'style_color3' => '#339933', 'style_color4' => '#FFCC00',
             'style_footer_bg' => null,
-        ]);
+        ])->save();
 
         $blocks = [
             ['الواجهة الرئيسية', 'Hero', 2, $this->bannerContent($hero->id, 'slider')],
