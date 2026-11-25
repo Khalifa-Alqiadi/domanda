@@ -4023,7 +4023,11 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
         color: var(--doman-color2);
     }
     #header.doman-header .navbar-mobile > ul > li > a::after { display: none; }
-    body:has(#header.doman-header) .fixed-top-margin { margin-top: 112px; }
+    body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
+    .topic-page.doman-topic-detail .post-heading h1{
+        font-size: 26px;
+        line-height: 1.7;
+    }
 }
 
 @media (max-width: 575px) {
@@ -4032,7 +4036,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
     #header.doman-header .doman-identity-name { padding-inline-start: 10px; }
     #header.doman-header .doman-identity-name strong { font-size: 22px; }
     #header.doman-header .doman-identity-name small { font-size: 8px; }
-    body:has(#header.doman-header) .fixed-top-margin { margin-top: 108px; }
+    body:has(#header.doman-header) .fixed-top-margin { margin-top: 67px; }
 }
 
 /* Doman vision and mission: editorial composition for the named banner block. */
@@ -6258,7 +6262,7 @@ section.doman-news .doman-news-read i { transition: none; }
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     background: color-mix(in srgb, var(--doman-surface) 78%, white);
 }
-.topic-page.doman-topic-detail.modern-news-detail .post-heading h1 { font-size: 35px; }
+.topic-page.doman-topic-detail.modern-news-detail .post-heading h1 { font-size: 26px; line-height: 1.7; }
 .topic-page.doman-topic-detail.modern-news-detail .article-body { max-width: 78ch; }
 
 /* Products: preserve the complete packshot, framed like a catalog photograph. */
@@ -6380,12 +6384,13 @@ section.doman-news .doman-news-read i { transition: none; }
     .topic-page.doman-topic-detail.doman-product-detail .post-image {
         grid-template-columns: 1fr;
         gap: 22px;
-        padding: 20px;
+        padding: 0;
         border-radius: 4px 22px 4px 22px;
+        background: transparent;
     }
     .topic-page.doman-topic-detail .post-heading h1,
     .topic-page.doman-topic-detail.modern-news-detail .post-heading h1,
-    .topic-page.doman-topic-detail.doman-product-detail .post-heading h1 { font-size: clamp(25px, 6vw, 34px); }
+    .topic-page.doman-topic-detail.doman-product-detail .post-heading h1 { font-size: 22px; line-height: 1.7; }
     .topic-page.doman-topic-detail .doman-topic-visual .post-main-photo,
     .topic-page.doman-topic-detail .doman-topic-visual > .post-main-photo { height: auto; min-height: 210px; max-height: 400px; }
     .topic-page.doman-topic-detail.doman-product-detail .doman-topic-visual { padding: 15px; }
