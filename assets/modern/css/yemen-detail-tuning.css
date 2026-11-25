@@ -427,22 +427,6 @@
     position: relative;
 }
 
-.topic-read-also-heading__icon {
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    flex: 0 0 60px;
-    padding: 0;
-    border: 1px solid color-mix(in srgb, var(--read-also-accent) 22%, transparent);
-    border-radius: 10px;
-    background-color: color-mix(in srgb, var(--read-also-surface) 92%, transparent);
-    background-image: url('../images/4_1.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 46px auto;
-    box-shadow: 0 8px 20px color-mix(in srgb, var(--read-also-ink) 8%, transparent);
-}
-
 .topic-read-also-heading__icon i {
     display: none;
 }

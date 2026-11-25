@@ -119,16 +119,7 @@
                     <div
                         class="col-lg-{{ $Categories->count() > 1 ? '9' : '12' }} col-md-{{ $Categories->count() > 1 ? '7' : '12' }} col-sm-12 col-xs-12">
                         <article class="doman-topic-article mb-5">
-                            @if ($webmaster_section_title || $Topic->date)
-                                <div class="doman-topic-kicker">
-                                    @if ($webmaster_section_title)
-                                        <span>{{ $webmaster_section_title }}</span>
-                                    @endif
-                                    @if ($Topic->date)
-                                        <time datetime="{{ date('Y-m-d', strtotime($Topic->date)) }}">{{ Helper::formatDate($Topic->date) }}</time>
-                                    @endif
-                                </div>
-                            @endif
+
                             @if ($WebmasterSection->type == 2 && $Topic->video_file != '')
                                 {{-- video --}}
                                 <div class="post-video">

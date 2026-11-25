@@ -3281,18 +3281,6 @@ pre {
     margin-bottom: 1.4rem;
 }
 
-.topic-read-also-heading__icon {
-    display: inline-flex;
-    width: 2.5rem;
-    height: 2.5rem;
-    align-items: center;
-    justify-content: center;
-    color: var(--read-also-accent);
-    background: var(--read-also-accent-soft);
-    border: 1px solid var(--read-also-accent-line);
-    border-radius: 50%;
-}
-
 .topic-read-also-heading h2 {
     margin: 0;
     color: var(--read-also-ink);
@@ -3312,9 +3300,9 @@ pre {
     min-height: 10.5rem;
     height: 100%;
     overflow: hidden;
-    color: var(--read-also-ink);
-    background: var(--read-also-surface);
-    border: 1px solid var(--read-also-border);
+    color: #fff;
+    background: var(--doman-color2);
+    border: 0;
     border-radius: 20px 6px 20px 20px;
     text-decoration: none;
     transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
@@ -3435,14 +3423,14 @@ pre {
 
 .topic-read-also-card__content small {
     margin-bottom: .4rem;
-    color: var(--read-also-accent);
+    color: var(--doman-color3);
     font-size: .75rem;
     font-weight: 700;
     letter-spacing: .02em;
 }
 
 .topic-read-also-card__content strong {
-    color: var(--read-also-ink);
+    color: #fff;
     font-size: clamp(.98rem, 1.5vw, 1.12rem);
     line-height: 1.55;
 }
@@ -3454,7 +3442,7 @@ pre {
     align-self: flex-start;
     margin-top: .85rem;
     padding-top: .65rem;
-    color: var(--read-also-accent);
+    color: var(--doman-color3);
     border-top: 1px solid var(--read-also-border);
     font-size: .76rem;
     font-weight: 700;
@@ -6065,7 +6053,7 @@ section.doman-news .doman-news-read i { transition: none; }
     color: var(--doman-color1);
     font-size: clamp(32px, 4vw, 58px);
     font-weight: 750;
-    line-height: 1.4;
+    line-height: 1.7;
     text-wrap: balance;
 }
 .topic-page.doman-topic-detail .post-heading h1::after {
@@ -6277,7 +6265,7 @@ section.doman-news .doman-news-read i { transition: none; }
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     background: color-mix(in srgb, var(--doman-surface) 78%, white);
 }
-.topic-page.doman-topic-detail.modern-news-detail .post-heading h1 { font-size: clamp(27px, 2.4vw, 40px); }
+.topic-page.doman-topic-detail.modern-news-detail .post-heading h1 { font-size: 35px; }
 .topic-page.doman-topic-detail.modern-news-detail .article-body { max-width: 78ch; }
 
 /* Products: preserve the complete packshot, framed like a catalog photograph. */
