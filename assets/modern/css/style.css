@@ -6262,7 +6262,7 @@ section.doman-news .doman-news-read i { transition: none; }
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     background: color-mix(in srgb, var(--doman-surface) 78%, white);
 }
-.topic-page.doman-topic-detail.modern-news-detail .post-heading h1 { font-size: 26px; line-height: 1.7; }
+.topic-page.doman-topic-detail.modern-news-detail .post-heading h1 { font-size: 26px; line-height: 2; }
 .topic-page.doman-topic-detail.modern-news-detail .article-body { max-width: 78ch; }
 
 /* Products: preserve the complete packshot, framed like a catalog photograph. */
