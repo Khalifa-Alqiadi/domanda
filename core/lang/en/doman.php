@@ -23,9 +23,9 @@ return [
         'rail_label' => 'Discover Doman',
     ],
     'products' => [
-        'eyebrow' => 'From Doman to your table',
+        'eyebrow' => 'The best choice for your daily diet',
         'view_all' => 'Explore all products',
-        'collection_label' => 'The Doman collection',
+        'collection_label' => 'Atayeb',
         'card_link' => 'Discover product',
     ],
     'news' => [

@@ -23,9 +23,9 @@ return [
         'rail_label' => 'اكتشف دومان',
     ],
     'products' => [
-        'eyebrow' => 'من دومان إلى مائدتكم',
+        'eyebrow' => 'أفضل خيار لغذائك اليومي ',
         'view_all' => 'تصفح كل المنتجات',
-        'collection_label' => 'من مجموعة دومان',
+        'collection_label' => 'أطايب',
         'card_link' => 'اكتشف المنتج',
     ],
     'news' => [
