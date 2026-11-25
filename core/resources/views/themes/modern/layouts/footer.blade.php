@@ -74,9 +74,9 @@ $footer_logo = Helper::GeneralSiteSettings($footer_logo_field)
                                     </span>
                                 @endif
                             </a>
-                            @if(Helper::GeneralSiteSettings($site_desc_var) !="")
+                            {{-- @if(Helper::GeneralSiteSettings($site_desc_var) !="")
                                 <p class="modern-footer-description">{{ Helper::GeneralSiteSettings($site_desc_var) }}</p>
-                            @endif
+                            @endif --}}
                             @include(theme_view("layouts.social"),["tt_position"=>"top"])
                         </div>
                     </div>

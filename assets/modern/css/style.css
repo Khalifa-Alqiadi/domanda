@@ -4674,7 +4674,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 #footer.doman-footer-light .modern-footer-main > [class*="col-"] { width: auto; max-width: none; margin: 0; padding: 0; }
 #footer.doman-footer-light .modern-footer-brand { max-width: 385px; }
 #footer.doman-footer-light .modern-footer-logo { gap: 13px; margin-bottom: 21px; color: var(--doman-color2); text-decoration: none; }
-#footer.doman-footer-light .modern-footer-logo .doman-footer-logo-image { display: block; width: auto; max-width: min(100%, 260px); height: auto; max-height: 80px; object-fit: contain; }
+#footer.doman-footer-light .modern-footer-logo .doman-footer-logo-image { display: block; width: auto; max-width: none; height: auto; max-height: 160px; object-fit: contain; }
 .doman-footer-mark {
     display: grid;
     width: 53px;
