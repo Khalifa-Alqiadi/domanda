@@ -3912,7 +3912,7 @@ body:has(#header.doman-header) #topbar .contact-info i { color: var(--doman-colo
 #header.doman-header,
 #header.doman-header.header-scrolled {
     padding: 0;
-    background: linear-gradient(105deg, var(--doman-color1) 0%, color-mix(in srgb, var(--doman-color1) 88%, white) 100%);
+    background: linear-gradient(105deg, var(--doman-color1) 20%, color-mix(in srgb, var(--doman-color1) 82%, white) 100%);
     border: 0;
     box-shadow: 0 14px 34px color-mix(in srgb, var(--doman-color2) 18%, transparent);
 }
