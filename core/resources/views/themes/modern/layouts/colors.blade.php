@@ -3,6 +3,16 @@ $style_color1 = Helper::GeneralSiteSettings("style_color1") ?: "#333399";
 $style_color2 = Helper::GeneralSiteSettings("style_color2") ?: "#000066";
 $style_color3 = Helper::GeneralSiteSettings("style_color3") ?: "#339933";
 $style_color4 = Helper::GeneralSiteSettings("style_color4") ?: "#FFCC00";
+$domanChroma = static function ($color) {
+    if (!preg_match('/^#?([a-f0-9]{6})$/i', (string) $color, $matches)) {
+        return 0;
+    }
+    $channels = array_map('hexdec', str_split($matches[1], 2));
+    return max($channels) - min($channels);
+};
+$domanAccent = $domanChroma($style_color3) > 24 ? $style_color3
+    : ($domanChroma($style_color2) > 24 ? $style_color2 : $style_color1);
+$domanHighlight = $domanChroma($style_color4) > 24 ? $style_color4 : $domanAccent;
 $hero_deep_color = $style_color1;
 $hero_shadow_color = $style_color2;
 
@@ -13,10 +23,12 @@ $hero_shadow_color = $style_color2;
         --doman-color2: {{ $style_color2 }};
         --doman-color3: {{ $style_color3 }};
         --doman-color4: {{ $style_color4 }};
+        --doman-accent: {{ $domanAccent }};
+        --doman-highlight: {{ $domanHighlight }};
         --doman-blue: var(--doman-color1);
         --doman-navy: var(--doman-color1);
-        --doman-green: var(--doman-color3);
-        --doman-yellow: var(--doman-color4);
+        --doman-green: var(--doman-accent);
+        --doman-yellow: var(--doman-highlight);
         --doman-cream: #F8F8F8;
         --doman-ink: var(--doman-color1);
         --doman-ink-soft: color-mix(in srgb, var(--doman-color1) 58%, white);
