@@ -37,7 +37,7 @@
 #hero.modern-hero .carousel-inner,
 #hero.modern-hero .carousel-item {
     width: 100%;
-    height: clamp(620px, 78svh, 880px);
+    height: 100%;
 }
 
 #hero.modern-hero {

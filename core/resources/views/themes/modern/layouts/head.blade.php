@@ -27,12 +27,7 @@
 <meta name="author" content="{{ @$PageTitle }}"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" href="{{ theme_asset('fonts/Alexandria-variable.ttf') }}" type="font/ttf" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700&display=swap"></noscript>
 <link href="{{ theme_asset('vendor/fontawesome/css/all.min.css') }}?v={{ Helper::system_version() }}"  rel="stylesheet" media/>
 <link href="{{ theme_asset('vendor/fontawesome/css/font-awesome.min.css') }}?v={{ Helper::system_version() }}" rel="stylesheet" media/>
 <link href="{{ theme_asset('vendor/animate.css/animate.min.css') }}?v={{ Helper::system_version() }}" rel="stylesheet">
@@ -45,7 +40,7 @@
 <link rel="stylesheet" href="{{ theme_asset('vendor/owl-carousel/assets/owl.carousel.min.css') }}?v={{ Helper::system_version() }}">
 <link rel="stylesheet" href="{{ theme_asset('vendor/owl-carousel/assets/owl.theme.default.min.css') }}?v={{ Helper::system_version() }}">
 
-<link href="{{ theme_asset('css/style.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
+<link href="{{ theme_asset('css/style.css') }}?v={{ Helper::system_version() }}-{{ @filemtime(public_path('assets/modern/css/style.css')) }}" rel="stylesheet"/>
 <link href="{{ theme_asset('css/colors.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
 <link href="{{ theme_asset('css/motion.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
 <link href="{{ theme_asset('css/authors.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
@@ -58,7 +53,7 @@
 
 
 @if( @Helper::currentLanguage()->direction=="rtl")
-<link href="{{ theme_asset('css/rtl.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
+<link href="{{ theme_asset('css/rtl.css') }}?v={{ Helper::system_version() }}-{{ @filemtime(public_path('assets/modern/css/rtl.css')) }}" rel="stylesheet"/>
 @endif
 <link href="{{ theme_asset('css/mobile-responsive.css') }}?v={{ Helper::system_version() }}" rel="stylesheet"/>
 

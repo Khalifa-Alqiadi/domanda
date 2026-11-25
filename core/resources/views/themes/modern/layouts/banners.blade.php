@@ -45,7 +45,7 @@
                                 <h2 id="doman-vm-title-{{ (int) $TopicBlock->id }}">{{ __('doman.vision_mission.heading') }}</h2>
                                 <span class="doman-vm-intro-line" aria-hidden="true"></span>
                                 <p>{{ __('doman.vision_mission.description') }}</p>
-                                <span class="doman-vm-wordmark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
+                                {{-- <span class="doman-vm-wordmark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span> --}}
                             </div>
                             <div class="doman-vm-panels">
                                 @foreach($BannersList as $TextBanner)

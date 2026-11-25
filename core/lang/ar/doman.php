@@ -6,6 +6,11 @@ return [
     'brand_wordmark' => 'DOMAN',
     'brand_slide_label' => '01 / DOMAN',
     'brand_values' => 'الطبيعة · الجودة · الثقة',
+    'listing' => [
+        'eyebrow' => 'اكتشف دومان',
+        'results' => ':count عنصر',
+        'pages' => 'صفحات المحتوى',
+    ],
     'hero' => [
         'eyebrow' => 'من الطبيعة إلى مائدتكم',
         'discover' => 'تعرّف على دومان',
@@ -22,6 +27,12 @@ return [
         'view_all' => 'تصفح كل المنتجات',
         'collection_label' => 'من مجموعة دومان',
         'card_link' => 'اكتشف المنتج',
+    ],
+    'news' => [
+        'eyebrow' => 'من أخبار دومان',
+        'category' => 'الأخبار',
+        'view_all' => 'جميع الأخبار',
+        'read_article' => 'اقرأ الخبر',
     ],
     'gallery' => [
         'eyebrow' => 'لحظات من عالم دومان',

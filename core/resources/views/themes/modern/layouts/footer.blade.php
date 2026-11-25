@@ -1,6 +1,4 @@
 <?php
-$style_color1 = Helper::GeneralSiteSettings("style_color1") ?: "#0cbaa4";
-$style_color2 = Helper::GeneralSiteSettings("style_color2") ?: "#2e3e4e";
 $site_title_var = "site_title_".@Helper::currentLanguage()->code;
 $site_desc_var = "site_desc_".@Helper::currentLanguage()->code;
 $contact_address = Helper::GeneralSiteSettings("contact_t1_" . @Helper::currentLanguage()->code);

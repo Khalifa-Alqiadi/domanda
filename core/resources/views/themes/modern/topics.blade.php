@@ -57,15 +57,20 @@
         if (@$page_type == "tag" && trim(@$TagDescription)) {
             $Category_description = @$TagDescription;
         }
+        $listing_section_id = (int) (@$WebmasterSection->id ?? 0);
+        $is_news_listing = $listing_section_id === 3;
+        $is_product_listing = $listing_section_id === 8;
+        $is_special_listing = $is_news_listing || $is_product_listing;
+        $listing_eyebrow = $is_news_listing ? __('doman.news.eyebrow') : ($is_product_listing ? __('doman.products.eyebrow') : __('doman.listing.eyebrow'));
         ?>
         @if($category_image !="")
             @include(theme_view("topic.cover"))
         @endif
-        <section class="breadcrumbs {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-breadcrumbs' : '' }}">
+        <section class="breadcrumbs doman-listing-hero {{ $is_news_listing ? 'doman-listing-news' : ($is_product_listing ? 'doman-listing-products' : '') }}">
             <div class="container">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h1>{{  (@$search_word !="")?(__('backend.resultsFoundFor')." [ ".@$search_word." ]"):$page_title }}</h1>
-                    <ol>
+                <div class="doman-listing-hero-top">
+                    <span class="doman-listing-eyebrow"><span aria-hidden="true"></span>{{ $listing_eyebrow }}</span>
+                    <ol class="doman-listing-trail">
                         <li><a href="{{ Helper::homeURL() }}">{{ __("backend.home") }}</a></li>
                         @if(@$search_word !="")
                             <li class="active">{!! __("backend.search") !!}</li>
@@ -87,6 +92,12 @@
                         @endif
                     </ol>
                 </div>
+                <div class="doman-listing-hero-main">
+                    <h1>{{ (@$search_word != "") ? __('backend.resultsFoundFor')." [ ".@$search_word." ]" : $page_title }}</h1>
+                    @if($is_news_listing || $is_product_listing)
+                        <span class="doman-listing-hero-mark" aria-hidden="true">{{ $is_news_listing ? '03' : '08' }}</span>
+                    @endif
+                </div>
                 @if($Category_description)
                     <div class="text-muted mt-2 category-details">
                         {!! nl2br($Category_description) !!}
@@ -94,20 +105,34 @@
                 @endif
             </div>
         </section>
-        <section id="content">
+        <section id="content" class="doman-listing-content {{ $is_news_listing ? 'doman-listing-news' : ($is_product_listing ? 'doman-listing-products' : '') }}">
             <div class="container">
-                <div class="row">
+                <div class="row doman-listing-layout">
                     @if(@count($Categories)>0)
                         @include(theme_view('layouts.side'))
                     @endif
-                    <div
-                        class="col-lg-{{(@count($Categories)>0)? "9":"12"}} col-md-{{(@count($Categories)>0)? "7":"12"}} col-sm-12 col-xs-12">
+                    <div class="col-lg-{{(@count($Categories)>0)? "9":"12"}} col-md-{{(@count($Categories)>0)? "7":"12"}} col-sm-12 col-xs-12">
+                        <div class="doman-listing-toolbar">
+                            <span>{{ $is_news_listing ? __('doman.news.category') : ($is_product_listing ? __('doman.products.collection_label') : $webmaster_section_title) }}</span>
+                        </div>
                         @if($Topics->total() == 0)
                             <div class="p-5 card text-center no-data">
                                 <i class="fa fa-desktop fa-5x opacity-50"></i>
                                 <h5 class="mt-3 text-muted">{{ __('frontend.noData') }}</h5>
                             </div>
                         @else
+                            @if($is_special_listing)
+                                <div class="doman-listing-grid {{ $is_news_listing ? 'doman-listing-news-grid' : 'doman-listing-product-grid' }} {{ @count($Categories) > 0 ? 'has-sidebar' : '' }}">
+                                    @foreach($Topics as $Topic)
+                                        @include(theme_view('topic.catalog-card'), ['Topic' => $Topic, 'listingType' => $is_news_listing ? 'news' : 'product'])
+                                    @endforeach
+                                </div>
+                                @if($Topics->hasPages())
+                                    <nav class="doman-listing-pagination" aria-label="{{ __('doman.listing.pages') }}">
+                                        {{ $Topics->withQueryString()->onEachSide(1)->links('pagination::bootstrap-5') }}
+                                    </nav>
+                                @endif
+                            @else
                             <div class="row modern-topics-grid">
                                 @if($Topics->total() > 0)
 
@@ -199,6 +224,7 @@
                                     });
                                 </script>
                             @endpush
+                            @endif
                         @endif
                         @endif
                     </div>

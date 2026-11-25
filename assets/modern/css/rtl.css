@@ -6,12 +6,16 @@
     margin-right: 0 !important
 }
 
-* {
-    font-family: Alexandria, sans-serif
+html[lang="ar"] body,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] select,
+html[lang="ar"] textarea {
+    font-family: Alexandria, Arial, sans-serif
 }
 
 #hero h2, .btn, .categories-list .nav-link span, .navbar .nav-link, h1, h2, h3, h4, h5, h6,.modern-footer-contact-label,.modern-works-title {
-    font-family: Alexandria, sans-serif
+    font-family: Alexandria, Arial, sans-serif
 }
 
 .header-dropdown .btn {
@@ -35,7 +39,7 @@
 }
 
 .navbar > ul > li {
-    padding: 8px 25px 23px 0
+    padding: 8px 25px 8px 0
 }
 
 .navbar-mobile > ul > li {

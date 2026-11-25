@@ -19,6 +19,7 @@ $BlockTopics = [];
 $section_url = "";
 $blockCssClasses = preg_split('/\s+/', trim((string) @$TopicBlock->css_classes), -1, PREG_SPLIT_NO_EMPTY);
 $isProductsBlock = in_array('products', $blockCssClasses, true);
+$isNewsBlock = in_array('latest-news', $blockCssClasses, true);
 if (@$TopicBlockContents->module_id) {
     $BlockTopics = Helper::Topics(@$TopicBlockContents->module_id, @$TopicBlockContents->category_ids,
         @$TopicBlockContents->records_count, 0, @$TopicBlockContents->records_order);
@@ -27,7 +28,7 @@ if (@$TopicBlockContents->module_id) {
 ?>
 
 @if(count($BlockTopics) >0)
-    <section id="landing-block-{{ @$TopicBlock->id }}" class="landing-block modern-works {{ $isProductsBlock ? 'doman-products' : '' }} {{ @$TopicBlock->css_classes  }}" style="{{ $block_style }}">
+    <section id="landing-block-{{ @$TopicBlock->id }}" class="landing-block modern-works {{ $isProductsBlock ? 'doman-products' : '' }} {{ $isNewsBlock ? 'doman-news' : '' }} {{ @$TopicBlock->css_classes  }}" style="{{ $block_style }}">
         <div class="container">
             @if($isProductsBlock)
                 <div class="doman-products-intro">
@@ -47,6 +48,24 @@ if (@$TopicBlockContents->module_id) {
                         </a>
                     @endif
                 </div>
+            @elseif($isNewsBlock)
+                <div class="doman-news-intro">
+                    <div class="doman-news-intro-copy">
+                        <span class="doman-news-eyebrow"><span aria-hidden="true"></span>{{ __('doman.news.eyebrow') }}</span>
+                        @if(@$TopicBlock->title_status)
+                            <h2>{{ @$TopicBlockContents->$title_var ?: @$TopicBlockContents->$title_var2 }}</h2>
+                        @endif
+                        @if(@$TopicBlock->desc_status)
+                            <p>{{ strip_tags(@$TopicBlockContents->{"desc_".@Helper::currentLanguage()->code} ?: @$TopicBlockContents->{"desc_".config('smartend.default_language')}) }}</p>
+                        @endif
+                    </div>
+                    @if(@$TopicBlock->more_btn_status)
+                        <a class="doman-news-all" href="{{ url($section_url) }}">
+                            <span>{{ __('doman.news.view_all') }}</span>
+                            <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                        </a>
+                    @endif
+                </div>
             @elseif(@$TopicBlock->title_status || @$TopicBlock->desc_status)
                 <div class="section-title">
                     @if(@$TopicBlock->title_status)
@@ -57,7 +76,7 @@ if (@$TopicBlockContents->module_id) {
                     @endif
                 </div>
             @endif
-            <div class="modern-works-slider {{ $isProductsBlock ? 'doman-products-slider' : '' }} swiper">
+            <div class="modern-works-slider {{ $isProductsBlock ? 'doman-products-slider' : '' }} {{ $isNewsBlock ? 'doman-news-slider' : '' }} swiper">
                 <div class="swiper-wrapper">
                     @foreach($BlockTopics as $Topic)
                             <?php
@@ -107,7 +126,7 @@ if (@$TopicBlockContents->module_id) {
                                             @else
                                                 <span class="doman-product-placeholder" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
                                             @endif
-                                            <span class="doman-product-stage-mark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span>
+                                            {{-- <span class="doman-product-stage-mark" aria-hidden="true">{{ __('doman.brand_wordmark') }}</span> --}}
                                         </div>
                                         <div class="doman-product-info">
                                             <div>
@@ -119,6 +138,56 @@ if (@$TopicBlockContents->module_id) {
                                             </div>
                                         </div>
                                         <span class="doman-product-bottom">{{ __('doman.products.card_link') }} <i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+                                    </a>
+                                </article>
+                            @elseif($isNewsBlock)
+                                <?php
+                                $newsImage = '';
+                                if (@$Topic->photo_file != '') {
+                                    $newsImage = route('fileView', ['path' => 'topics/'.$Topic->photo_file]).'?w=1280&h=720&r=fit';
+                                } elseif (@$Topic->photos && count($Topic->photos) > 0) {
+                                    $newsImage = route('fileView', ['path' => 'topics/'.$Topic->photos->first()->file]).'?w=1280&h=720&r=fit';
+                                } else {
+                                    foreach (@$Topic->webmasterSection->customFields->where('type', 8) as $newsPhotoField) {
+                                        if ($newsPhotoField->lang_code == 'all' || $newsPhotoField->lang_code == @Helper::currentLanguage()->code) {
+                                            foreach (@$Topic->fields->where('field_id', $newsPhotoField->id) as $newsPhoto) {
+                                                if (@$newsPhoto->field_value != '') {
+                                                    $newsImage = route('fileView', ['path' => 'topics/'.$newsPhoto->field_value]).'?w=1280&h=720&r=fit';
+                                                    break 2;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                $newsCategory = @$Topic->category($Topic->id);
+                                $newsCategoryTitle = @$newsCategory->$title_var ?: @$newsCategory->$title_var2;
+                                $newsNumber = str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT);
+                                ?>
+                                <article class="doman-news-card">
+                                    <a class="doman-news-card-link" href="{{ $topic_link_url }}" aria-label="{{ $title }}">
+                                        <div class="doman-news-media">
+                                            @if($newsImage != '')
+                                                <img src="{{ $newsImage }}" alt="{{ Helper::topicPhotoAlt($Topic) }}" loading="lazy" width="1280" height="720">
+                                            @else
+                                                <span class="doman-news-image-fallback">{{ __('doman.brand_wordmark') }}</span>
+                                            @endif
+                                            {{-- <span class="doman-news-image-index" aria-hidden="true">{{ $newsNumber }}</span> --}}
+                                            {{-- @if(@$Topic->date)
+                                                <time class="doman-news-date" datetime="{{ date('Y-m-d', strtotime($Topic->date)) }}">{{ Helper::formatDate($Topic->date) }}</time>
+                                            @endif --}}
+                                        </div>
+                                        <div class="doman-news-body">
+                                            <div class="doman-news-meta">
+                                                {{-- <span class="doman-news-category">{{ $newsCategoryTitle ?: __('doman.news.category') }}</span> --}}
+                                                <span class="doman-news-meta-rule" aria-hidden="true"></span>
+                                                <span>{{ __('doman.news.eyebrow') }}</span>
+                                            </div>
+                                            <h3>{{ $title }}</h3>
+                                            @if($details != '')
+                                                <p>{{ strip_tags($details) }}</p>
+                                            @endif
+                                            <span class="doman-news-read"><span>{{ __('doman.news.read_article') }}</span><i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+                                        </div>
                                     </a>
                                 </article>
                             @else
@@ -140,7 +209,7 @@ if (@$TopicBlockContents->module_id) {
                     </button>
                 </div>
             </div>
-            @if (@$TopicBlock->more_btn_status && !$isProductsBlock)
+            @if (@$TopicBlock->more_btn_status && !$isProductsBlock && !$isNewsBlock)
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="more-btn">

@@ -1,25 +1,38 @@
 <?php
-$style_color1 = Helper::GeneralSiteSettings("style_color1") ?: "#0cbaa4";
-$style_color2 = Helper::GeneralSiteSettings("style_color2") ?: "#2e3e4e";
-$style_color3 = Helper::GeneralSiteSettings("style_color3") ?: "#f5f8fb";
-$style_color4 = Helper::GeneralSiteSettings("style_color4") ?: "#6b7785";
-$hero_deep_color = Helper::colorHexToDarken($style_color2, 2.7);
-$hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
+$style_color1 = Helper::GeneralSiteSettings("style_color1") ?: "#333399";
+$style_color2 = Helper::GeneralSiteSettings("style_color2") ?: "#000066";
+$style_color3 = Helper::GeneralSiteSettings("style_color3") ?: "#339933";
+$style_color4 = Helper::GeneralSiteSettings("style_color4") ?: "#FFCC00";
+$hero_deep_color = $style_color1;
+$hero_shadow_color = $style_color2;
 
 ?>
 <style>
     :root {
+        --doman-color1: {{ $style_color1 }};
+        --doman-color2: {{ $style_color2 }};
+        --doman-color3: {{ $style_color3 }};
+        --doman-color4: {{ $style_color4 }};
+        --doman-blue: var(--doman-color1);
+        --doman-navy: var(--doman-color1);
+        --doman-green: var(--doman-color3);
+        --doman-yellow: var(--doman-color4);
+        --doman-cream: #F8F8F8;
+        --doman-ink: var(--doman-color1);
+        --doman-ink-soft: color-mix(in srgb, var(--doman-color1) 58%, white);
+        --doman-surface: #F8F8F8;
+        --doman-surface-soft: #F9F9F9;
         --modern-author-accent: {{ $style_color1 }};
         --modern-author-ink: {{ $style_color2 }};
-        --modern-author-surface: {{ $style_color3 }};
+        --modern-author-surface: var(--doman-surface);
     }
 
     .topic-read-also {
         --read-also-accent: {{ $style_color1 }};
         --read-also-ink: {{ $style_color2 }};
-        --read-also-muted: {{ $style_color4 }};
-        --read-also-surface: {{ $style_color3 }};
-        --read-also-soft: {{ $style_color3 }};
+        --read-also-muted: color-mix(in srgb, {{ $style_color1 }} 62%, white);
+        --read-also-surface: var(--doman-surface);
+        --read-also-soft: var(--doman-surface-soft);
         --read-also-border: {{ Helper::colorHexToRGB($style_color2, 0.12) }};
         --read-also-accent-soft: {{ Helper::colorHexToRGB($style_color1, 0.11) }};
         --read-also-accent-line: {{ Helper::colorHexToRGB($style_color1, 0.38) }};
@@ -29,8 +42,8 @@ $hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
     #hero.modern-hero {
         --hero-accent: {{ $style_color1 }};
         --hero-surface: {{ $hero_deep_color }};
-        --hero-text: {{ $style_color3 }};
-        --hero-on-accent: {{ $style_color3 }};
+        --hero-text: #fff;
+        --hero-on-accent: {{ $style_color1 }};
         --hero-on-light: {{ $style_color2 }};
         --hero-muted: {{ Helper::colorHexToRGB($style_color3, 0.76) }};
         --hero-line: {{ Helper::colorHexToRGB($style_color3, 0.3) }};
@@ -59,7 +72,7 @@ $hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
 
     .gallery {
         --gallery-accent: {{ $style_color1 }};
-        --gallery-surface: {{ $style_color3 }};
+        --gallery-surface: var(--doman-surface);
         --gallery-frame: #fff;
         --gallery-ink: {{ $style_color2 }};
         --gallery-glow: {{ Helper::colorHexToRGB($style_color1, 0.12) }};
@@ -68,11 +81,11 @@ $hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
 
     .modern-works {
         --works-accent: {{ $style_color1 }};
-        --works-surface: {{ $style_color3 }};
+        --works-surface: var(--doman-surface);
         --works-card: #fff;
         --works-border: {{ Helper::colorHexToRGB($style_color2, 0.1) }};
         --works-heading: {{ $style_color2 }};
-        --works-muted: {{ $style_color4 }};
+        --works-muted: color-mix(in srgb, {{ $style_color1 }} 58%, white);
         --works-kicker-bg: transparent;
         --works-arrow-bg: {{ Helper::colorHexToRGB($style_color3, 0.86) }};
         --works-arrow-color: {{ $style_color2 }};
@@ -83,10 +96,10 @@ $hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
         --staff-accent: {{ $style_color1 }};
         --staff-panel: {{ $style_color2 }};
         --staff-surface: #fff;
-        --staff-muted: {{ $style_color4 }};
+        --staff-muted: color-mix(in srgb, {{ $style_color1 }} 58%, white);
         --staff-text-muted: {{ Helper::colorHexToRGB($style_color2, 0.7) }};
         --staff-heading: {{ $style_color2 }};
-        --staff-on-panel: {{ $style_color3 }};
+        --staff-on-panel: #fff;
         --staff-overlay: {{ $style_color2 }};
         --staff-overlay-border: {{ Helper::colorHexToRGB($style_color3, 0.22) }};
     }
@@ -785,7 +798,7 @@ $hero_shadow_color = Helper::colorHexToDarken($style_color2, 3.2);
         transition: transform .2s ease, box-shadow .2s ease;
     }
     .modern-topic-card:hover .post-card { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(20, 55, 60, .14); }
-    .modern-topic-card :is(.image-container, .video-container) { aspect-ratio: 16 / 10; overflow: hidden; background: #e8f1f0; }
+    .modern-topic-card :is(.image-container, .video-container) { aspect-ratio: 16 / 10; overflow: hidden; background: var(--doman-surface-soft); }
     .modern-topic-card :is(.image-container, .video-container) .card-img-top { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
     .modern-topic-card:hover .card-img-top { transform: scale(1.04); }
     .modern-topic-card__body { display: flex; flex-direction: column; flex: 1; padding: 1.15rem 1.3rem 1.3rem; }

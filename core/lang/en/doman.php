@@ -6,6 +6,11 @@ return [
     'brand_wordmark' => 'DOMAN',
     'brand_slide_label' => '01 / DOMAN',
     'brand_values' => 'NATURE · QUALITY · TRUST',
+    'listing' => [
+        'eyebrow' => 'Explore Doman',
+        'results' => ':count items',
+        'pages' => 'Browse pages',
+    ],
     'hero' => [
         'eyebrow' => 'From nature to your table',
         'discover' => 'Discover Doman',
@@ -22,6 +27,12 @@ return [
         'view_all' => 'Explore all products',
         'collection_label' => 'The Doman collection',
         'card_link' => 'Discover product',
+    ],
+    'news' => [
+        'eyebrow' => 'From Doman',
+        'category' => 'News',
+        'view_all' => 'All news',
+        'read_article' => 'Read article',
     ],
     'gallery' => [
         'eyebrow' => 'Moments from Doman',
