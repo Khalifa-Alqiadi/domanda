@@ -190,12 +190,14 @@ class SettingsController extends Controller
                 }
             }
 
-            $footerLogoName = null;
-            if ($request->hasFile('style_footer_logo')) {
-                $request->validate([
-                    'style_footer_logo' => 'file|mimes:'.config('filesystems.allowed_image_types'),
-                ]);
-                $footerLogoName = FileHelper::uploadFile($request->file('style_footer_logo'), $this->uploadPath, 0)['name'] ?? null;
+            $footerLogoNames = [];
+            foreach (['style_footer_logo', 'style_footer_logo_en'] as $footerLogoField) {
+                if ($request->hasFile($footerLogoField)) {
+                    $request->validate([
+                        $footerLogoField => 'file|mimes:'.config('filesystems.allowed_image_types'),
+                    ]);
+                    $footerLogoNames[$footerLogoField] = FileHelper::uploadFile($request->file($footerLogoField), $this->uploadPath, 0)['name'] ?? null;
+                }
             }
 
             // End of Upload Files
@@ -232,11 +234,13 @@ class SettingsController extends Controller
             if ($fileFinalName5 != "") {
                 $Setting->style_footer_bg = $fileFinalName5;
             }
-            if ($request->boolean('style_footer_logo_delete') || $footerLogoName) {
-                if ($Setting->style_footer_logo) {
-                    FileHelper::deleteFile($this->uploadPath.'/'.$Setting->style_footer_logo);
+            foreach (['style_footer_logo', 'style_footer_logo_en'] as $footerLogoField) {
+                if ($request->boolean($footerLogoField.'_delete') || !empty($footerLogoNames[$footerLogoField])) {
+                    if ($Setting->{$footerLogoField}) {
+                        FileHelper::deleteFile($this->uploadPath.'/'.$Setting->{$footerLogoField});
+                    }
+                    $Setting->{$footerLogoField} = $footerLogoNames[$footerLogoField] ?? null;
                 }
-                $Setting->style_footer_logo = $footerLogoName;
             }
             $Setting->style_preload = $request->style_preload;
             $Setting->css = $request->css_code;

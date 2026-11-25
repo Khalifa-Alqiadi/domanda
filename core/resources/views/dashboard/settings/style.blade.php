@@ -78,23 +78,27 @@
             @endforeach
         </div>
         <hr>
-        <div class="form-group">
-            <label for="style_footer_logo">{{ __('backend.footerLogo') }}</label>
-            @if($Setting->style_footer_logo)
-                <div class="box p-a-sm m-b-sm" style="max-width: 300px">
-                    <a target="_blank" href="{{ route('fileView', ['path' => 'settings/'.$Setting->style_footer_logo]) }}">
-                        <img src="{{ route('fileView', ['path' => 'settings/'.$Setting->style_footer_logo]) }}"
-                             alt="{{ __('backend.footerLogo') }}" class="img-responsive"
-                             style="max-width: 260px;max-height: 100px">
-                    </a>
-                    <label class="md-check m-t-sm">
-                        <input type="checkbox" name="style_footer_logo_delete" value="1">
-                        <i class="danger"></i> {{ __('backend.delete') }}
-                    </label>
+        <div class="form-group row">
+            @foreach(['ar' => 'style_footer_logo', 'en' => 'style_footer_logo_en'] as $languageCode => $footerLogoField)
+                <div class="col-sm-6 m-b-2">
+                    <label for="{{ $footerLogoField }}">{{ __('backend.footerLogo'.ucfirst($languageCode)) }}</label>
+                    @if($Setting->{$footerLogoField})
+                        <div class="box p-a-sm m-b-sm" style="max-width: 300px">
+                            <a target="_blank" href="{{ route('fileView', ['path' => 'settings/'.$Setting->{$footerLogoField}]) }}">
+                                <img src="{{ route('fileView', ['path' => 'settings/'.$Setting->{$footerLogoField}]) }}"
+                                     alt="{{ __('backend.footerLogo'.ucfirst($languageCode)) }}" class="img-responsive"
+                                     style="max-width: 260px;max-height: 100px">
+                            </a>
+                            <label class="md-check m-t-sm">
+                                <input type="checkbox" name="{{ $footerLogoField }}_delete" value="1">
+                                <i class="danger"></i> {{ __('backend.delete') }}
+                            </label>
+                        </div>
+                    @endif
+                    <input type="file" name="{{ $footerLogoField }}" id="{{ $footerLogoField }}" class="form-control" accept="image/*">
+                    <small>{{ __('backend.imagesTypes') }}</small>
                 </div>
-            @endif
-            <input type="file" name="style_footer_logo" id="style_footer_logo" class="form-control" accept="image/*">
-            <small>{{ __('backend.imagesTypes') }}</small>
+            @endforeach
         </div>
         <hr>
         <div class="form-group row">

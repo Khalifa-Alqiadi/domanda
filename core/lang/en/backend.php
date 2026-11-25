@@ -1052,6 +1052,8 @@ return array(
     'basicSettings' => 'Basic fields',
     'authors' => 'Authors',
     'footerLogo' => 'Footer logo',
+    'footerLogoAr' => 'Footer logo in Arabic',
+    'footerLogoEn' => 'Footer logo in English',
     'authorsField' => 'Link authors to topics',
     'authorName' => 'Author name',
     'authorPosition' => 'Author title',

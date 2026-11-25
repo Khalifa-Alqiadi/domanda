@@ -1053,6 +1053,8 @@ return array(
     'basicSettings' => 'الحقول الأساسية',
     'authors' => 'الكتّاب',
     'footerLogo' => 'شعار الموقع في الفوتر',
+    'footerLogoAr' => 'شعار الفوتر بالعربية',
+    'footerLogoEn' => 'شعار الفوتر بالإنجليزية',
     'authorsField' => 'ربط الكتّاب بالمواد',
     'authorName' => 'اسم الكاتب',
     'authorPosition' => 'صفة الكاتب',

@@ -4,6 +4,9 @@ $site_desc_var = "site_desc_".@Helper::currentLanguage()->code;
 $contact_address = Helper::GeneralSiteSettings("contact_t1_" . @Helper::currentLanguage()->code);
 $contact_phone = Helper::GeneralSiteSettings("contact_t3");
 $contact_email = Helper::GeneralSiteSettings("contact_t6");
+$footer_logo_field = @Helper::currentLanguage()->code === 'ar' ? 'style_footer_logo' : 'style_footer_logo_en';
+$footer_logo = Helper::GeneralSiteSettings($footer_logo_field)
+    ?: Helper::GeneralSiteSettings('style_logo_' . @Helper::currentLanguage()->code);
 ?>
 <footer id="footer" class="modern-footer doman-footer-light">
     @if(Helper::GeneralSiteSettings("style_footer")==1)
@@ -59,11 +62,17 @@ $contact_email = Helper::GeneralSiteSettings("contact_t6");
                     <div class="col-lg-4 col-md-12">
                         <div class="modern-footer-brand">
                             <a class="modern-footer-logo" href="{{ Helper::homeURL() }}">
-                                <span class="doman-footer-mark" aria-hidden="true"><span></span></span>
-                                <span class="doman-footer-logo-copy">
-                                    <strong>{{ Helper::GeneralSiteSettings($site_title_var) ?: __('doman.brand_company') }}</strong>
-                                    <small>{{ __('doman.footer.brand_caption') }}</small>
-                                </span>
+                                @if($footer_logo)
+                                    <img class="doman-footer-logo-image"
+                                         src="{{ route('fileView', ['path' => 'settings/'.$footer_logo]) }}"
+                                         alt="{{ Helper::GeneralSiteSettings($site_title_var) ?: __('doman.brand_company') }}">
+                                @else
+                                    <span class="doman-footer-mark" aria-hidden="true"><span></span></span>
+                                    <span class="doman-footer-logo-copy">
+                                        <strong>{{ Helper::GeneralSiteSettings($site_title_var) ?: __('doman.brand_company') }}</strong>
+                                        <small>{{ __('doman.footer.brand_caption') }}</small>
+                                    </span>
+                                @endif
                             </a>
                             @if(Helper::GeneralSiteSettings($site_desc_var) !="")
                                 <p class="modern-footer-description">{{ Helper::GeneralSiteSettings($site_desc_var) }}</p>
