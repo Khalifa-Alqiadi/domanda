@@ -3,7 +3,7 @@
 @endphp
 
 @if($readAlsoTopics->isNotEmpty())
-    <section class="doman-topic-related" aria-labelledby="doman-topic-related-title">
+    <section class="doman-topic-related {{ (int) $WebmasterSection->id === 3 ? 'doman-topic-related--news' : ((int) $WebmasterSection->id === 8 ? 'doman-topic-related--products' : 'doman-topic-related--standard') }}" aria-labelledby="doman-topic-related-title">
         <div class="doman-topic-related-heading">
             <div>
                 <span class="doman-topic-related-eyebrow" aria-hidden="true"><span></span><span></span></span>
@@ -22,7 +22,7 @@
                 <a href="{{ $readAlsoUrl }}" class="doman-topic-related-card">
                     <span class="doman-topic-related-media">
                         @if(filled($readAlsoPhoto))
-                            <img src="{{ route('fileView', ['path' => 'topics/'.$readAlsoPhoto]) }}?w=560&h=360&r=fit"
+                            <img src="{{ route('fileView', ['path' => 'topics/'.$readAlsoPhoto]) }}{{ (int) $WebmasterSection->id === 8 ? '?w=640&h=640&r=fit' : '?w=900&h=560&r=fit' }}"
                                  alt="{{ Helper::topicPhotoAlt($readAlsoTopic) }}"
                                  width="560" height="360" loading="lazy" decoding="async">
                         @else

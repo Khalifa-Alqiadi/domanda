@@ -77,12 +77,12 @@
             }
         }
         ?>
-        @if ($category_image != '')
+        @if ($category_image != '' && !in_array((int) @$WebmasterSection->id, [3, 8], true))
             @include(theme_view('topic.cover'))
         @endif
-        <section class="breadcrumbs {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-breadcrumbs' : '' }}">
+        <section class="breadcrumbs doman-topic-breadcrumbs {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-breadcrumbs' : '' }}">
             <div class="container">
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center doman-topic-trail">
                     <h2>{!! @$WebmasterSection->id == 1 ? $title : $page_title !!}</h2>
                     <ol>
                         <li><a href="{{ Helper::homeURL() }}">{{ __('backend.home') }}</a></li>
@@ -111,7 +111,7 @@
             </div>
         @endif
         <section id="content" class="doman-topic-content">
-            <div class="container topic-page doman-topic-detail {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-detail' : '' }} {{ (int) @$WebmasterSection->id === 8 ? 'doman-product-detail' : '' }}">
+            <div class="container topic-page doman-topic-detail {{ (int) @$WebmasterSection->id === 3 ? 'modern-news-detail' : ((int) @$WebmasterSection->id === 8 ? 'doman-product-detail' : 'doman-standard-detail') }}">
                 <div class="row">
                     @if ($Categories->count() > 1)
                         @include(theme_view('layouts.side'))
@@ -261,6 +261,7 @@
                                             @endif
                                         </div>
                                     @endif
+                                    <div class="doman-topic-visual">
                                     @if ($Topic->photo_file != '')
                                         <a href="{{ route('fileView', ['path' => 'topics/' . $Topic->photo_file]) }}"
                                            class="galelry-lightbox" title="{{ $title }}">
@@ -291,6 +292,7 @@
                                             @endif
                                         @endforeach
                                     @endif
+                                    </div>
                                 </div>
                             @endif
 
