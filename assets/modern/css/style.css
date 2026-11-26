@@ -3859,10 +3859,18 @@ pre {
 
 @media (max-width: 575px) {
     #hero.doman-hero .doman-editorial-hero,
-    #hero.doman-hero .doman-editorial-slide { min-height: 690px; }
-    .doman-editorial-grid { padding-top: 125px; padding-bottom: 100px; }
-    .doman-editorial-copy h1 { font-size: clamp(42px, 10vw, 58px); }
-    .doman-editorial-copy p { font-size: 16px; line-height: 1.9; }
+    #hero.doman-hero .doman-editorial-slide { min-height: max(620px, calc(100svh - 68px)); }
+    #hero.doman-hero .doman-editorial-grid { padding: 70px 20px 92px; }
+    #hero.doman-hero .doman-editorial-copy h1 {
+        max-width: 100%;
+        margin-bottom: 18px;
+        font-size: clamp(33px, 9vw, 44px);
+        line-height: 1.35;
+        letter-spacing: -.03em;
+        overflow-wrap: anywhere;
+    }
+    #hero.doman-hero .doman-editorial-copy p { max-width: 100%; font-size: 15px; line-height: 1.8; }
+    #hero.doman-hero .doman-editorial-cta { gap: 18px; margin-top: 23px; padding: 11px 17px; font-size: 13px; }
     .doman-editorial-art { width: 420px; inset-inline-end: -45%; bottom: -18%; }
     .doman-editorial-bottom { bottom: 23px; font-size: 8px; }
     .doman-editorial-bottom span:last-child { display: none; }
@@ -3963,6 +3971,8 @@ html[lang="en"] #header.doman-header .doman-identity-name strong {
 }
 
 #header.doman-header .navbar { margin: 0; }
+.doman-mobile-backdrop,
+.doman-mobile-brand { display: none; }
 #header.doman-header .navbar > ul { gap: clamp(2px, .55vw, 10px); }
 #header.doman-header .navbar > ul > li > a {
     position: relative;
@@ -4013,16 +4023,136 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
         width: 42px;
         height: 42px;
         margin: 0;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, .28);
+        border-radius: 11px;
+        background: rgba(255, 255, 255, .07);
         color: #fff;
-        font-size: 29px;
+        font-size: 25px;
+        line-height: 1;
     }
-    #header.doman-header .navbar-mobile .mobile-nav-toggle { color: var(--doman-color2); }
-    #header.doman-header .navbar-mobile > ul > li > a {
-        min-height: auto;
-        padding: 14px 24px;
-        color: var(--doman-color2);
+    #header.doman-header #navbar.navbar-mobile {
+        --doman-menu-width: min(86vw, 370px);
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        display: block;
+        width: 100vw;
+        height: 100dvh;
+        margin: 0;
+        overflow: hidden;
+        background: transparent;
+        overscroll-behavior: contain;
     }
-    #header.doman-header .navbar-mobile > ul > li > a::after { display: none; }
+    #header.doman-header #navbar.navbar-mobile .doman-mobile-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: color-mix(in srgb, var(--doman-color1) 50%, transparent);
+        cursor: pointer;
+    }
+    #header.doman-header #navbar.navbar-mobile .doman-mobile-brand {
+        position: absolute;
+        z-index: 3;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        display: flex;
+        align-items: center;
+        width: var(--doman-menu-width);
+        height: 92px;
+        padding-inline: 22px 75px;
+        overflow: hidden;
+        color: #fff;
+        background: var(--doman-color1);
+        font-family: Alexandria, sans-serif;
+        font-size: 18px;
+        font-weight: 750;
+    }
+    #header.doman-header #navbar.navbar-mobile .doman-mobile-brand img {
+        display: block;
+        width: auto;
+        max-width: 142px;
+        height: auto;
+        max-height: 66px;
+        object-fit: contain;
+    }
+    #header.doman-header #navbar.navbar-mobile > ul {
+        position: absolute;
+        z-index: 2;
+        inset-block: 0 !important;
+        inset-inline-start: 0 !important;
+        inset-inline-end: auto !important;
+        display: block;
+        width: var(--doman-menu-width) !important;
+        height: 100%;
+        max-height: 100dvh;
+        margin: 0;
+        padding: 105px 16px max(28px, env(safe-area-inset-bottom));
+        overflow-y: auto;
+        border-inline-end: 1px solid color-mix(in srgb, var(--doman-color1) 10%, transparent);
+        background: #fff;
+        box-shadow: 0 20px 50px color-mix(in srgb, var(--doman-color1) 18%, transparent);
+        scrollbar-width: thin;
+    }
+    #header.doman-header #navbar.navbar-mobile > ul > li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid color-mix(in srgb, var(--doman-color1) 9%, transparent);
+    }
+    #header.doman-header #navbar.navbar-mobile > ul > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 58px;
+        padding: 13px 14px;
+        border-radius: 7px;
+        color: var(--doman-color1);
+        font-size: 15px;
+        font-weight: 700;
+        white-space: normal;
+    }
+    #header.doman-header #navbar.navbar-mobile > ul > li > a.active,
+    #header.doman-header #navbar.navbar-mobile > ul > li > a:hover,
+    #header.doman-header #navbar.navbar-mobile > ul > li > a:focus-visible {
+        color: var(--doman-color3);
+        background: var(--doman-surface);
+    }
+    #header.doman-header #navbar.navbar-mobile > ul > li > a::after { display: none; }
+    #header.doman-header #navbar.navbar-mobile .dropdown ul {
+        margin: 0 4px 10px;
+        padding: 8px;
+        border-radius: 8px;
+        background: var(--doman-surface);
+        box-shadow: none;
+    }
+    #header.doman-header #navbar.navbar-mobile .dropdown ul a {
+        min-height: 42px;
+        padding: 10px 12px;
+        color: var(--doman-color1);
+        font-size: 13px;
+        white-space: normal;
+    }
+    #header.doman-header #navbar.navbar-mobile .dropdown ul a:hover,
+    #header.doman-header #navbar.navbar-mobile .dropdown ul a:focus-visible { color: var(--doman-color3); }
+    #header.doman-header #navbar.navbar-mobile .mobile-nav-toggle {
+        position: absolute;
+        z-index: 4;
+        top: 21px !important;
+        right: auto;
+        left: auto;
+        inset-inline-start: calc(var(--doman-menu-width) - 65px);
+        width: 46px;
+        height: 46px;
+        color: #fff;
+        background: rgba(255, 255, 255, .1);
+    }
+    body.doman-menu-open { overflow: hidden; }
     body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
     .topic-page.doman-topic-detail .post-heading h1{
         font-size: 26px;
@@ -4032,7 +4162,7 @@ body:has(#header.doman-header) .fixed-top-margin { margin-top: 98px; }
 
 @media (max-width: 575px) {
     #header.doman-header .doman-header-shell { min-height: 68px; }
-    #header.doman-header .doman-identity-logo { max-width: 74px; max-height: 42px; }
+    #header.doman-header .doman-identity-logo { width: auto; max-width: 120px; height: 52px; max-height: 52px; }
     #header.doman-header .doman-identity-name { padding-inline-start: 10px; }
     #header.doman-header .doman-identity-name strong { font-size: 22px; }
     #header.doman-header .doman-identity-name small { font-size: 8px; }
@@ -5026,11 +5156,13 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
 }
 @media (max-width: 767px) {
     #hero.doman-hero:has(.doman-cinematic-carousel),
+    #hero.doman-hero:has(.doman-cinematic-carousel) > .hero-container,
     #hero.doman-hero .doman-cinematic-carousel,
     #hero.doman-hero .doman-cinematic-carousel .carousel-inner,
     #hero.doman-hero .doman-cinematic-carousel .carousel-item {
-        height: clamp(700px, 91svh, 850px);
-        min-height: 700px;
+        height: clamp(620px, calc(100svh - 68px), 780px);
+        min-height: 620px;
+        max-height: 780px;
     }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-shade,
     [dir="rtl"] #hero.doman-hero .doman-cinematic-carousel .modern-hero-shade {
@@ -5039,18 +5171,29 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
     }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-orbit { top: -14%; inset-inline-start: -55%; width: 110vw; height: 110vw; opacity: .65; }
     #hero.doman-hero .doman-cinematic-carousel .carousel-item::after { display: none; }
-    #hero.doman-hero .doman-cinematic-carousel .modern-hero-container { align-items: flex-end; padding-block: 110px 145px; }
-    #hero.doman-hero .doman-cinematic-carousel .modern-hero-content { width: 100%; padding-inline-start: 0; }
+    #hero.doman-hero .doman-cinematic-carousel .modern-hero-container {
+        align-items: flex-end;
+        width: 100%;
+        max-width: none;
+        padding: 95px 20px 130px;
+    }
+    #hero.doman-hero .doman-cinematic-carousel .modern-hero-content { width: 100%; min-width: 0; padding-inline-start: 0; }
     #hero.doman-hero .doman-photo-overline { margin-bottom: 17px; font-size: 10px; }
-    #hero.doman-hero .doman-cinematic-carousel .modern-hero-title { max-width: 16ch; font-size: clamp(39px, 10vw, 60px); line-height: 1.14; }
+    #hero.doman-hero .doman-cinematic-carousel .modern-hero-title {
+        max-width: 100%;
+        font-size: clamp(30px, 8.5vw, 44px);
+        line-height: 1.32;
+        letter-spacing: -.025em;
+        overflow-wrap: anywhere;
+    }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-title::after { margin-top: 20px; }
-    #hero.doman-hero .doman-cinematic-carousel .modern-hero-description { width: 100%; margin-top: 17px; font-size: 15px; line-height: 1.65; -webkit-line-clamp: 3; }
-    #hero.doman-hero .doman-cinematic-carousel .modern-hero-cta { min-height: 52px; margin-top: 24px; }
+    #hero.doman-hero .doman-cinematic-carousel .modern-hero-description { width: 100%; margin-top: 15px; font-size: 14px; line-height: 1.65; -webkit-line-clamp: 2; }
+    #hero.doman-hero .doman-cinematic-carousel .modern-hero-cta { min-height: 50px; margin-top: 19px; }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-cta-icon { width: 38px; height: 38px; flex-basis: 38px; }
     #hero.doman-hero .doman-photo-frame { top: 28px; inset-inline-end: 20px; padding: 10px 13px; }
     #hero.doman-hero .doman-photo-frame-caption { font-size: 10px; }
     #hero.doman-hero .doman-cinematic-wordmark { bottom: 93px; font-size: 22vw; }
-    #hero.doman-hero .doman-cinematic-carousel .modern-hero-rail { min-height: 88px; gap: 12px; padding-inline: 20px; }
+    #hero.doman-hero .doman-cinematic-carousel .modern-hero-rail { min-height: 80px; gap: 12px; padding-inline: 20px; }
     #hero.doman-hero .doman-photo-rail-label { display: none; }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-indicators { max-width: calc(100% - 112px); width: auto; gap: 8px; }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-indicator { width: 24px; font-size: 0; }
@@ -5060,9 +5203,10 @@ body.dark #footer.doman-footer-light .footer-newsletter form input[type=email] {
 }
 @media (max-height: 560px) and (orientation: landscape) {
     #hero.doman-hero:has(.doman-cinematic-carousel),
+    #hero.doman-hero:has(.doman-cinematic-carousel) > .hero-container,
     #hero.doman-hero .doman-cinematic-carousel,
     #hero.doman-hero .doman-cinematic-carousel .carousel-inner,
-    #hero.doman-hero .doman-cinematic-carousel .carousel-item { height: 560px; min-height: 560px; }
+    #hero.doman-hero .doman-cinematic-carousel .carousel-item { height: 560px; min-height: 560px; max-height: 560px; }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-container { padding-block: 65px 105px; }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-title { font-size: 45px; }
     #hero.doman-hero .doman-cinematic-carousel .modern-hero-description { margin-top: 14px; }

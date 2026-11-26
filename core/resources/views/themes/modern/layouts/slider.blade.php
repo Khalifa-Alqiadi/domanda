@@ -284,4 +284,24 @@
             </style>
         @endif
     @endpush
+    @if($SliderBanner_type == 1)
+        @push('after-scripts')
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const carousel = document.getElementById('heroCarousel');
+                    if (!carousel) return;
+                    const slides = [...carousel.querySelectorAll('.carousel-item')];
+                    const warmSlide = index => {
+                        const image = slides[index % slides.length]?.querySelector('.modern-hero-image');
+                        if (image) image.loading = 'eager';
+                    };
+                    if (slides.length > 1) warmSlide(1);
+                    carousel.addEventListener('slide.bs.carousel', event => {
+                        warmSlide(event.to);
+                        warmSlide(event.to + 1);
+                    });
+                });
+            </script>
+        @endpush
+    @endif
 @endif
