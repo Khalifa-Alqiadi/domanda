@@ -50,6 +50,7 @@ return [
     'mostViewed' => 'Most Viewed',
     'share' => 'Share',
     'shareOn' => 'Share on',
+    'aboutStory' => 'Our story',
     'social_facebook' => 'Facebook',
     'social_whatsapp' => 'WhatsApp',
     'social_twitter' => 'X',

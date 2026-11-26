@@ -50,6 +50,7 @@ return [
     'mostViewed' => 'الأكثر مشاهدة',
     'share' => 'نشر',
     'shareOn' => 'المشاركة عبر',
+    'aboutStory' => 'قصتنا',
     'social_facebook' => 'فيسبوك',
     'social_whatsapp' => 'واتساب',
     'social_twitter' => 'إكس',

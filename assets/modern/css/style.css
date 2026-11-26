@@ -6167,6 +6167,7 @@ section.doman-news .doman-news-read i { transition: none; }
 }
 .modern-page-cover + .breadcrumbs.doman-topic-breadcrumbs ol,
 .modern-page-cover + .breadcrumbs.doman-topic-breadcrumbs ol a { color: #fff !important; }
+.modern-page-cover + .breadcrumbs.doman-topic-breadcrumbs h2 { display: block; }
 #content.doman-topic-content {
     padding: clamp(28px, 4vw, 58px) 0 clamp(72px, 8vw, 110px);
     background: #fff;
@@ -6217,6 +6218,8 @@ section.doman-news .doman-news-read i { transition: none; }
     margin-top: 22px;
 }
 .topic-page.doman-topic-detail .doman-topic-visual { min-width: 0; }
+.topic-page.doman-topic-detail .doman-topic-visual:not(:has(img)) { display: none; }
+.topic-page.doman-topic-detail .post-image:not(:has(.doman-topic-visual img)) { display: block; }
 .topic-page.doman-topic-detail .doman-topic-visual > a { display: block; overflow: hidden; border-radius: 4px 22px 4px 22px; }
 .topic-page.doman-topic-detail .doman-topic-visual .post-main-photo,
 .topic-page.doman-topic-detail .doman-topic-visual > .post-main-photo {
@@ -6413,4 +6416,175 @@ section.doman-news .doman-news-read i { transition: none; }
 @media (prefers-reduced-motion: reduce) {
     .topic-page.doman-topic-detail .doman-topic-visual a .post-main-photo,
     .doman-topic-share-links a { transition: none; }
+}
+
+/* About block: editorial copy beside the image already stored in the editor. */
+.topic-block.about-us { position: relative; overflow: hidden; }
+.landing-block.about-us {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(70px, 9vw, 130px) 0;
+    background: #fff;
+}
+.landing-block.about-us::before {
+    position: absolute;
+    inset-block-start: -230px;
+    inset-inline-end: -220px;
+    width: 620px;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--doman-color3) 12%, transparent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 95px color-mix(in srgb, var(--doman-color3) 3%, transparent),
+                0 0 0 190px color-mix(in srgb, var(--doman-color3) 2%, transparent);
+    content: '';
+    pointer-events: none;
+}
+.landing-block.about-us > .container { position: relative; z-index: 1; }
+.doman-about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+    align-items: center;
+    gap: clamp(34px, 7vw, 110px);
+}
+.doman-about-copy { min-width: 0; }
+.doman-about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    color: var(--doman-color3);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+.doman-about-eyebrow > span { width: 28px; height: 2px; background: var(--doman-color4); }
+.landing-block.about-us .section-title { padding: 0; text-align: start; }
+.landing-block.about-us .section-title h2 { margin: 0 0 18px; color: var(--doman-color1); font-size: clamp(38px, 4.2vw, 64px); line-height: 1.2; }
+.landing-block.about-us .section-title h2::after { display: none; }
+.landing-block.about-us .section-title p { margin: 0 0 22px; color: var(--doman-ink-soft); }
+.doman-about-prose {
+    color: var(--doman-color1);
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 2;
+    overflow-wrap: anywhere;
+}
+.doman-about-prose > :first-child { margin-top: 0; }
+.doman-about-prose :is(h1, h2) {
+    max-width: 12ch;
+    margin: 0 0 25px;
+    color: var(--doman-color1);
+    font-size: clamp(42px, 4.5vw, 68px);
+    font-weight: 800;
+    line-height: 1.18;
+}
+.doman-about-prose :is(h1, h2)::after {
+    display: block;
+    width: 58px;
+    height: 4px;
+    margin-top: 23px;
+    background: linear-gradient(90deg, var(--doman-color3) 0 70%, var(--doman-color4) 70%);
+    content: '';
+}
+.doman-about-prose :is(p, ul, ol) { margin: 0 0 15px; color: color-mix(in srgb, var(--doman-color1) 82%, white); }
+.doman-about-prose p:empty { display: none; }
+.doman-about-prose :is(h3, h4, strong) { color: var(--doman-color1); font-weight: 800; }
+.doman-about-prose :is(h3, h4) { margin: 24px 0 8px; font-size: clamp(17px, 1.3vw, 20px); }
+.doman-about-prose img { display: none; }
+.doman-about-prose * { float: none !important; }
+.doman-about-visual {
+    position: relative;
+    display: grid;
+    min-height: clamp(450px, 43vw, 610px);
+    align-items: center;
+}
+.doman-about-visual::before {
+    position: absolute;
+    inset: 6% 3% 0 0;
+    border-radius: 8px 95px 8px 95px;
+    background: linear-gradient(140deg,
+        color-mix(in srgb, var(--doman-color3) 10%, white),
+        var(--doman-surface) 62%,
+        color-mix(in srgb, var(--doman-color4) 8%, white));
+    content: '';
+}
+.doman-about-visual::after {
+    position: absolute;
+    inset-inline-end: -12px;
+    inset-block-start: 14%;
+    width: 4px;
+    height: 30%;
+    border-radius: 3px;
+    background: var(--doman-color3);
+    content: '';
+}
+.doman-about-visual-frame {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-height: clamp(400px, 38vw, 545px);
+    margin: 0 clamp(20px, 3vw, 44px) clamp(24px, 3vw, 42px) 0;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--doman-color3) 13%, transparent);
+    border-radius: 6px 80px 6px 80px;
+    background: color-mix(in srgb, var(--doman-surface) 60%, white);
+}
+.doman-about-visual-orbit {
+    position: absolute;
+    width: 82%;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--doman-color3) 18%, transparent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 46px color-mix(in srgb, var(--doman-color3) 3%, transparent),
+                0 0 0 92px color-mix(in srgb, var(--doman-color3) 2%, transparent);
+    animation: doman-about-drift 14s ease-in-out infinite alternate;
+}
+.doman-about-visual-logo {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: min(70%, 360px);
+    aspect-ratio: 1;
+    place-items: center;
+    padding: 38px;
+    border: 1px solid color-mix(in srgb, var(--doman-color1) 9%, transparent);
+    border-radius: 12px 70px 12px 70px;
+    background: #fff;
+    box-shadow: 0 25px 65px color-mix(in srgb, var(--doman-color1) 10%, transparent);
+}
+.doman-about-visual-logo img {
+    display: block;
+    float: none !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 260px;
+    margin: 0 !important;
+    object-fit: contain;
+}
+.doman-about-visual-mark {
+    position: absolute;
+    inset-inline-end: 24px;
+    inset-block-end: 24px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--doman-color4);
+    box-shadow: 16px 0 0 var(--doman-color3);
+}
+@keyframes doman-about-drift { to { transform: translate(12px, -12px) rotate(6deg); } }
+@media (max-width: 991px) {
+    .doman-about-layout { grid-template-columns: 1fr; gap: 32px; }
+    .doman-about-visual { min-height: 390px; max-width: 650px; width: 100%; margin-inline: auto; }
+    .doman-about-visual-frame { min-height: 350px; }
+}
+@media (max-width: 575px) {
+    .landing-block.about-us { padding: 62px 0; }
+    .doman-about-prose :is(h1, h2) { font-size: clamp(34px, 10vw, 48px); }
+    .doman-about-visual { min-height: 300px; }
+    .doman-about-visual-frame { min-height: 285px; margin-inline-end: 16px; }
+    .doman-about-visual-logo { width: min(72%, 250px); padding: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .doman-about-visual-orbit { animation: none; }
 }
